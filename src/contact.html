@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="es-AR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tienda Web - Contacto</title>
+    <link rel="stylesheet" href="./css/main.css">
+
+</head>
+
+<body>
+    <header>
+        <h1>Tienda Web</h1>
+        <nav>
+            <ul class="navbar">
+                <li><a class="navbar__item" href="./index.html">Inicio</a></li>
+                <li><a class="navbar__item" href="./about-us.html">Nosotros</a></li>
+                <li><a class="navbar__item" href="./products.html">Productos</a></li>
+                <li><a class="navbar__item navbar__item--active" href="./contact.html">Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="page-contact">
+        <section class="page-contact__content">
+            <h2 class="title">Contacto</h2>
+
+            <article class="contact-data">
+                <h3 class="contact-data__title">Datos de Contacto</h3>
+
+                <ul class="contact-data__content">
+                    <li class="contact-data__item">Nombre de fantasia srl</li>
+                    <li class="contact-data__item">Domicilio: Av. siempre Viva 200</li>
+                    <li class="contact-data__item">Email: <a href="mailto:nombre@dominio.com">nombre@dominio.com</a>
+                    </li>
+                    <li class="contact-data__item">Telefono: <a href="tel:554388324">554388324</a></li>
+                </ul>
+            </article>
+
+            <article class="contact-form">
+                <h3 class="contact-form__title">Formulario de Consulta</h3>
+                <form action="endpoint.js" method="post">
+                    <div class="form__group">
+                        <label class="form__group__label" for="id-name">Nombre:</label>
+
+                        <input class="form__group__text" type="text" name="name" id="id-name" minlength="2"
+                            maxlength="15" placeholder="Ingresa tu nombre" required>
+                    </div>
+                    <div class="form__group">
+
+                        <label class="form__group__label" for="id-surname">Apellido:</label>
+
+                        <input class="form__group__text" type="text" name="apellido" id="id-surname" minlength="2"
+                            maxlength="15" placeholder="Ingresa tu apellido" required>
+                    </div>
+
+                    <div class="form__group">
+
+                        <label class="form__group__label" for="id-email">Email:</label>
+
+                        <input class="form__group__email" type="email" name="email" id="id-email" minlength="10"
+                            maxlength="50" placeholder="Ingresa tu correo electrónico" required>
+                    </div>
+
+                    <div class="form__group">
+
+                        <label class="form__group__label" for="id-phone">Telefono:</label>
+
+                        <input class="form__group__phone" type="text" name="phone" id="id-phone" maxlength="15"
+                            placeholder="Ingresa tu Numero Telefonico" required>
+                    </div>
+
+                    <div class="form__group">
+
+                        <label class="form__group__label" for="id-query">Consulta:</label>
+
+                        <textarea class="form__group__text" name="query" id="id-query" cols="60" rows="5"
+                            maxlength="250" placeholder="Ingresa tu Consulta"></textarea>
+                    </div>
+
+                    <input type="submit" value="Enviar">
+                </form>
+            </article>
+        </section>
+    </main>
+
+    <footer>
+        <p class="copyright">&copy;2025 Todos los derechos reservados - MiNombre</p>
+    </footer>
+</body>
+
+</html>
