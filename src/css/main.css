@@ -61,6 +61,7 @@ img {
 .card__actions {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   gap: 1rem;
   padding: 0.25rem;
 }
@@ -149,7 +150,7 @@ img {
   cursor: pointer;
 }
 .button--add {
-  background-color: #f1e0d3;
+  background-color: #e2c3a8;
   color: #5c3926;
   border: 1px solid #cfa37c;
 }
@@ -158,7 +159,7 @@ img {
   border: 1px solid #7c5032;
 }
 .button--remove {
-  background-color: #f1e0d3;
+  background-color: #e2c3a8;
   color: #5c3926;
   border: 1px solid #cfa37c;
 }
@@ -217,14 +218,15 @@ img {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  padding: 1rem;
 }
 .logo__image {
-  width: 4rem;
+  width: 5rem;
   height: fit-content;
   margin-bottom: -15px;
 }
 .logo__title {
-  font-size: 1.5rem;
+  font-size: 2rem;
   font-family: "LobsterRegular";
 }
 
@@ -254,11 +256,7 @@ header {
   display: flex;
   width: 100%;
   justify-content: space-between;
-  padding: 1rem;
   background-color: #f1e0d3;
-}
-header h1 {
-  position: relative;
 }
 
 main {
@@ -285,12 +283,25 @@ nav .navbar__item {
   color: #212529;
   font-size: 1rem;
   padding: 0.5rem 1rem;
-  font-size: 0.875rem;
 }
 nav .navbar__item:hover, nav .navbar__item--active {
   font-weight: 700;
   border-bottom: 2px solid #b98350;
   color: #b98350;
+}
+
+.page-home {
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+}
+.page-home .featured-products {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  padding: 2rem;
+  background-color: rgba(204, 204, 204, 0.4666666667);
+  border-radius: 2rem 0;
 }
 
 .page-about-us .approaches-container {
@@ -358,6 +369,18 @@ nav .navbar__item:hover, nav .navbar__item--active {
   color: #3b241a;
 }
 
+.page-products__head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.page-products__head .searcher__word {
+  font-size: 1rem;
+  font-weight: 400;
+  color: #212529;
+  border-radius: 0.5rem 0 0 0.5rem;
+  padding: 0.25rem;
+}
 .page-products .gallery {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
