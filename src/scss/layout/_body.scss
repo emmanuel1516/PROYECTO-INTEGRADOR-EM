@@ -2,6 +2,7 @@
 @use "../abstracts/variables" as var;
 
 body {
+    background-color: var.$color-neutro-100;
     height: 100vh;
 
     display: grid;
@@ -11,5 +12,5 @@ body {
         "main"
         "footer";
     grid-template-rows: max-content max-content 1fr max-content;
-    
+
 }

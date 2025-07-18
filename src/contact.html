@@ -23,65 +23,61 @@
     </header>
 
     <main class="page-contact">
-        <section class="page-contact__content">
+        <section>
             <h2 class="title">Contacto</h2>
 
-            <article class="contact-data">
-                <h3 class="contact-data__title">Datos de Contacto</h3>
+            <div class="content">
+                <article class="contact-data">
+                    <h3 class="contact-data__title">Datos de contacto</h3>
 
-                <ul class="contact-data__content">
-                    <li class="contact-data__item">Nombre de fantasia srl</li>
-                    <li class="contact-data__item">Domicilio: Av. siempre Viva 200</li>
-                    <li class="contact-data__item">Email: <a href="mailto:nombre@dominio.com">nombre@dominio.com</a>
-                    </li>
-                    <li class="contact-data__item">Telefono: <a href="tel:554388324">554388324</a></li>
-                </ul>
-            </article>
+                    <ul class="contact-data__content">
+                        <li class="contact-data__item">Fantasia SRL</li>
+                        <li class="contact-data__item">Domicilio: Av. Siempreviva 200, San Juan, Argentina</li>
+                        <li class="contact-data__item">Código postal: 5400</li>
+                        <li class="contact-data__item">Email: <a href="mailto:info@fantasia.com">info@fantasia.com</a>
+                        </li>
+                        <li class="contact-data__item">Teléfono: <a href="tel:554388324">+54 2645110099</a></li>
+                    </ul>
+                </article>
 
-            <article class="contact-form">
-                <h3 class="contact-form__title">Formulario de Consulta</h3>
-                <form action="endpoint.js" method="post">
-                    <div class="form__group">
-                        <label class="form__group__label" for="id-name">Nombre:</label>
+                <article class="query-form">
+                    <h3 class="query-form__title">Formulario de consulta</h3>
 
-                        <input class="form__group__text" type="text" name="name" id="id-name" minlength="2"
-                            maxlength="15" placeholder="Ingresa tu nombre" required>
-                    </div>
-                    <div class="form__group">
+                    <form class="form">
+                        <div class="form__group">
+                            <label class="form__group__label" for="id-name">Nombre:</label>
+                            <input class="form__group__input" type="text" name="name" id="id-name" minlength="2"
+                                maxlength="15" placeholder="Ingresa tu nombre" required>
+                        </div>
 
-                        <label class="form__group__label" for="id-surname">Apellido:</label>
+                        <div class="form__group">
+                            <label class="form__group__label" for="id-surname">Apellido:</label>
+                            <input class="form__group__text" type="text" name="apellido" id="id-surname" minlength="2"
+                                maxlength="15" placeholder="Ingresa tu apellido" required>
+                        </div>
 
-                        <input class="form__group__text" type="text" name="apellido" id="id-surname" minlength="2"
-                            maxlength="15" placeholder="Ingresa tu apellido" required>
-                    </div>
+                        <div class="form__group">
+                            <label class="form__group__label" for="id-email">Email:</label>
+                            <input class="form__group__email" type="email" name="email" id="id-email" minlength="10"
+                                maxlength="50" placeholder="Ingresa tu correo electrónico" required>
+                        </div>
 
-                    <div class="form__group">
+                        <div class="form__group">
+                            <label class="form__group__label" for="id-phone">Teléfono:</label>
+                            <input class="form__group__phone" type="text" name="phone" id="id-phone" maxlength="15"
+                                placeholder="Ingresa tu número telefónico" required>
+                        </div>
 
-                        <label class="form__group__label" for="id-email">Email:</label>
+                        <div class="form__group">
+                            <label class="form__group__label" for="id-query">Consulta:</label>
+                            <textarea class="form__group__text" name="query" id="id-query" cols="60" rows="5"
+                                maxlength="250" placeholder="Ingresa tu consulta"></textarea>
+                        </div>
 
-                        <input class="form__group__email" type="email" name="email" id="id-email" minlength="10"
-                            maxlength="50" placeholder="Ingresa tu correo electrónico" required>
-                    </div>
-
-                    <div class="form__group">
-
-                        <label class="form__group__label" for="id-phone">Telefono:</label>
-
-                        <input class="form__group__phone" type="text" name="phone" id="id-phone" maxlength="15"
-                            placeholder="Ingresa tu Numero Telefonico" required>
-                    </div>
-
-                    <div class="form__group">
-
-                        <label class="form__group__label" for="id-query">Consulta:</label>
-
-                        <textarea class="form__group__text" name="query" id="id-query" cols="60" rows="5"
-                            maxlength="250" placeholder="Ingresa tu Consulta"></textarea>
-                    </div>
-
-                    <input type="submit" value="Enviar">
-                </form>
-            </article>
+                        <input class="button button--primary" type="submit" value="Enviar">
+                    </form>
+                </article>
+            </div>
         </section>
     </main>
 

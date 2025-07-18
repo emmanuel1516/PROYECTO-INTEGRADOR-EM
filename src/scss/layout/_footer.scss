@@ -3,7 +3,7 @@
 
 footer {
     grid-area: footer;
-
+    background-color: var.$color-primary-200;
     padding: var.$spacing-sm;
 
     .copyright {

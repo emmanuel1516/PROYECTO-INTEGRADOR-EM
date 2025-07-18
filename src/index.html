@@ -4,13 +4,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tienda Web - Inicio</title>
+    <title>SneakerZone - Inicio</title>
     <link rel="stylesheet" href="./css/main.css">
 </head>
 
 <body>
     <header>
-        <h1>Tienda Web</h1>
+        <a class="logo" href="./index.html">
+            <img class="logo__image" src="./assets/images/logo.png" alt="Logo de la página">
+            <h1 class="logo__title">SneakerZone</h1>
+        </a>
         <nav>
             <ul class="navbar">
                 <li><a class="navbar__item navbar__item--active" href="./index.html">Inicio</a></li>
@@ -27,13 +30,19 @@
             <div class="slider">
                 <div class="slider__slides">
                     <div class="slider__slide">
-                        <img src="./assets/images/slider/slide1.jpg" alt="Coche deportivo 1" />
+                        <img class="slider__slide-image" src="./assets/images/slider/product01.jpg"
+                            alt="Imágen del primer producto en promoción" />
+                        <p class="slider__slide-label">20% OFF en lanzamientos</p>
                     </div>
                     <div class="slider__slide">
-                        <img src="./assets/images/slider/slide2.jpg" alt="Coche deportivo 2" />
+                        <img class="slider__slide-image" src="./assets/images/slider/product02.jpg"
+                            alt="Imágen del segundo producto en promoción" />
+                        <p class="slider__slide-label">20% OFF en lanzamientos</p>
                     </div>
                     <div class="slider__slide">
-                        <img src="./assets/images/slider/slide3.jpg" alt="Coche deportivo 3" />
+                        <img class="slider__slide-image" src="./assets/images/slider/product03.jpg"
+                            alt="Imágen del tercer producto en promoción" />
+                        <p class="slider__slide-label">20% OFF en lanzamientos</p>
                     </div>
                 </div>
             </div>
@@ -41,7 +50,7 @@
     </main>
 
     <footer>
-        <p class="copyright">&copy;2025 Todos los derechos reservados - MiNombre</p>
+        <p class="copyright">&copy;2025 Todos los derechos reservados - Emmanuel Martínez</p>
     </footer>
 </body>
 
