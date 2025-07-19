@@ -20,6 +20,14 @@ img {
   width: 100%;
 }
 
+@font-face {
+  font-family: "LobsterRegular";
+  src: url("../assets/fonts/lobster-regular.ttf") format("truetype");
+}
+@font-face {
+  font-family: "RobotoMono";
+  src: url("../assets/fonts/roboto-mono.ttf") format("truetype");
+}
 .card {
   display: flex;
   flex-direction: column;
@@ -27,6 +35,7 @@ img {
   border: 1px solid #212529;
   padding: 1rem;
   border-radius: 1rem 0 1rem 0;
+  margin-bottom: 0;
 }
 .card__image {
   border-top-left-radius: 0.5rem;
@@ -35,6 +44,7 @@ img {
   font-size: 1rem;
   font-weight: 700;
   color: #212529;
+  min-height: 4rem;
 }
 .card__code {
   font-size: 0.75rem;
@@ -209,10 +219,6 @@ img {
   color: #3b241a;
 }
 
-@font-face {
-  font-family: "LobsterRegular";
-  src: url("../assets/fonts/lobster-regular.ttf");
-}
 .logo {
   display: flex;
   flex-direction: column;
@@ -309,6 +315,16 @@ nav .navbar__item:hover, nav .navbar__item--active {
   flex-direction: column;
   gap: 1.5rem;
 }
+.page-about-us .approaches-container .mission,
+.page-about-us .approaches-container .vision,
+.page-about-us .approaches-container .values {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 2rem;
+  border-radius: 1rem;
+  background-color: rgba(204, 204, 204, 0.4666666667);
+}
 .page-about-us .approaches-container .mission__title,
 .page-about-us .approaches-container .vision__title,
 .page-about-us .approaches-container .values__title {
@@ -316,6 +332,7 @@ nav .navbar__item:hover, nav .navbar__item--active {
   font-size: 1.25rem;
   font-weight: 700;
   padding-bottom: 0.25rem;
+  font-family: "RobotoMono";
 }
 .page-about-us .approaches-container .mission__description,
 .page-about-us .approaches-container .vision__description,
@@ -324,36 +341,102 @@ nav .navbar__item:hover, nav .navbar__item--active {
   font-size: 1rem;
   font-weight: 400;
   text-align: justify;
+  font-family: "RobotoMono";
+}
+.page-about-us .approaches-container .mission__description p,
+.page-about-us .approaches-container .mission__description ul li,
+.page-about-us .approaches-container .mission__description ul li strong,
+.page-about-us .approaches-container .vision__description p,
+.page-about-us .approaches-container .vision__description ul li,
+.page-about-us .approaches-container .vision__description ul li strong,
+.page-about-us .approaches-container .values__description p,
+.page-about-us .approaches-container .values__description ul li,
+.page-about-us .approaches-container .values__description ul li strong {
+  font-size: 1rem;
+  text-align: justify;
+  font-family: "RobotoMono";
+  padding: 0.25rem;
+}
+.page-about-us .approaches-container .mission__description p,
+.page-about-us .approaches-container .vision__description p,
+.page-about-us .approaches-container .values__description p {
+  padding: 1rem 0;
 }
 .page-about-us .approaches-container .mission__image,
 .page-about-us .approaches-container .vision__image,
 .page-about-us .approaches-container .values__image {
+  border-radius: 1rem;
   height: fit-content;
-  width: 25%;
-  float: left;
+  width: 35%;
   margin: 0 0.5rem 0.25rem 0;
 }
+.page-about-us .approaches-container .vision {
+  flex-direction: row-reverse;
+  background-color: transparent;
+}
 .page-about-us .approaches-container .vision__image {
-  float: right;
   margin: 0 0 0.25rem 0.5rem;
 }
 
+.page-contact {
+  width: 100vw;
+}
 .page-contact .content {
+  width: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   gap: 2rem;
-  width: 450px;
+  align-items: center;
 }
 .page-contact .content .query-form {
+  width: 100%;
   display: flex;
   flex-direction: column;
   gap: 1rem;
+  background-color: rgba(204, 204, 204, 0.4666666667);
+  padding: 2rem;
+  border-radius: 1rem 0;
+  max-width: 650px;
+}
+.page-contact .content .query-form__title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #3b241a;
+  text-align: center;
+}
+.page-contact .content .query-form .form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.page-contact .content .query-form .form .form__group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.page-contact .content .query-form .form .form__group input {
+  width: 80%;
+  padding: 0.5rem;
+  border: 1px solid #7c5032;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+}
+.page-contact .content .query-form .form .form__group textarea {
+  width: 600px;
+  max-width: 100%;
+  max-height: 200px;
+  height: 150px;
+  padding: 0.5rem;
+  border: 1px solid #7c5032;
+  border-radius: 0.5rem;
+  font-size: 1rem;
 }
 .page-contact .content .contact-data {
   display: flex;
   flex-direction: column;
   gap: 1rem;
+  width: 100%;
 }
 .page-contact .content .contact-data__content {
   display: flex;
@@ -361,7 +444,7 @@ nav .navbar__item:hover, nav .navbar__item--active {
   gap: 0.5rem;
   padding: 1rem;
   border: 1px solid #7c5032;
-  border-radius: 0.25rem;
+  border-radius: 1rem 0;
 }
 .page-contact .content .contact-data__item {
   font-size: 0.875rem;

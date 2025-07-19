@@ -2,32 +2,83 @@
 @use "../abstracts/variables" as var;
 
 .page-contact {
+
+    width: 100vw;
+
     .content {
+        width: 100%;
         display: flex;
         flex-direction: column;
-        justify-content: center;
         gap: var.$spacing-xl ;
-        width: 450px;
+        align-items: center;
+
 
         .query-form {
+            width: 100%;
             display: flex;
             flex-direction: column;
             gap: var.$spacing-md;
+            background-color: var.$color-neutro-300;
+            padding: var.$spacing-xl;
+            border-radius: var.$spacing-md 0;
+            max-width: 650px;
+
+            &__title {
+                font-size: var.$font-size-lg;
+                font-weight: var.$font-weight-bold;
+                color: var.$color-primary-900;
+                text-align: center;
+            }
+
+            .form {
+                width: 100%;
+                display: flex;
+                flex-direction: column;
+                gap: var.$spacing-md;
+
+                .form__group {
+                    display: flex;
+                    flex-direction: column;
+                    gap: var.$spacing-sm;
+
+                    input {
+                        width: 80%;
+                        padding: var.$spacing-sm;
+                        border: 1px solid var.$color-primary-700;
+                        border-radius: var.$spacing-sm;
+                        font-size: var.$font-size-md;
+                    }
+
+                    textarea {
+                        width: 600px;
+                        max-width: 100%;
+                        max-height: 200px;
+                        height: 150px;
+                        padding: var.$spacing-sm;
+                        border: 1px solid var.$color-primary-700;
+                        border-radius: var.$spacing-sm;
+                        font-size: var.$font-size-md;
+                    }
+
+
+                }
+
+            }
         }
 
         .contact-data {
             display: flex;
             flex-direction: column;
             gap: var.$spacing-md;
+            width: 100%;
 
             &__content {
                 display: flex;
                 flex-direction: column;
                 gap: var.$spacing-sm;
                 padding: var.$spacing-md;
-
                 border: 1px solid var.$color-primary-700;
-                border-radius: 0.25rem;
+                border-radius: var.$spacing-md 0;
             }
 
             &__item {
