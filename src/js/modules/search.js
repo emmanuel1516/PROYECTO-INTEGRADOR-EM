@@ -56,4 +56,13 @@ export function initSearch() {
     }
   });
 
+
+  searchInput.addEventListener('keydown', (event) => {
+    if (event.key === 'Enter') {
+      event.preventDefault(); // Evita que se envíe un formulario o cualquier otro comportamiento por defecto
+      searchButton.click();    // Simula un click en el botón Buscar para reutilizar la lógica que ya tenés
+    }
+  });
+
+
 }

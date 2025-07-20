@@ -51,12 +51,25 @@
     &--search {
         background-color: var.$color-primary-300;
         color: var.$color-primary-800;
-        border: 1px solid var.$color-primary-400;
+        border: none;
+        outline: 1px solid var.$color-primary-300;
+        border-radius: 0 var.$spacing-sm var.$spacing-sm 0;
 
         &:hover,
         &:active {
             background-color: var.$color-primary-400;
-            border: 1px solid var.$color-primary-700;
+            outline: 1px solid var.$color-primary-700;
         }
+
+
+    }
+
+    .button__icon {
+        width: 100%;
+        height: 30px;
+        height: var.$spacing-md;
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: contain;
     }
 }
