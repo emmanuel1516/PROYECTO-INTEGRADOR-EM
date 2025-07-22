@@ -639,6 +639,7 @@ nav .navbar__item:hover, nav .navbar__item--active {
 .page-products__head .searcher {
   display: flex;
   align-items: center;
+  justify-content: end;
 }
 .page-products__head .searcher__word {
   font-size: 1rem;
@@ -651,6 +652,11 @@ nav .navbar__item:hover, nav .navbar__item--active {
   background-repeat: no-repeat;
   background-position: 0.25rem center;
   background-size: 1rem;
+}
+@media (max-width: 480px) {
+  .page-products__head .searcher__word {
+    width: 70%;
+  }
 }
 .page-products__head .searcher__word:focus {
   padding-left: 30px;

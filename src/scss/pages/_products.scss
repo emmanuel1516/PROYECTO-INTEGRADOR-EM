@@ -11,6 +11,7 @@
         .searcher {
             display: flex;
             align-items: center;
+            justify-content: end;
 
             &__word {
                 font-size: var.$font-size-md;
@@ -25,6 +26,11 @@
                 background-position: var.$spacing-xs center;
                 background-size: 1rem;
 
+                @media (max-width: 480px) {
+                    width: 70%;
+
+                }
+
                 &:focus {
                     padding-left: 30px;
                     background-image: url('../assets/icons/search.png');
@@ -32,6 +38,8 @@
                     background-size: var.$spacing-md;
                 }
             }
+
+
         }
     }
 
