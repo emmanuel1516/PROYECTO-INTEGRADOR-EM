@@ -2,12 +2,12 @@
 @use "../abstracts/variables" as var;
 
 nav {
-  grid-area: navbar;
   position: absolute;
-  bottom: 0 + var.$spacing-sm;
+  bottom: var.$spacing-sm;
   width: 100%;
   justify-content: center;
   display: flex;
+  z-index: 500;
 
   .navbar {
     display: flex;
@@ -29,5 +29,50 @@ nav {
         color: var.$color-primary-500;
       }
     }
+
+
+
+
   }
+
+  @media (max-width: 768px) {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin: -8px 0;
+
+    .navbar {
+      position: absolute;
+      display: none;
+      flex-direction: column;
+      top: 100%;
+      width: 50%;
+      right: calc(var.$spacing-xxl * -1.8);
+      margin: 0;
+      background-color: var.$color-primary-200;
+      text-align: center;
+      justify-content: center;
+      border-radius: 0 0 var.$spacing-md var.$spacing-md;
+
+      &--active {
+        overflow: hidden;
+        display: flex;
+      }
+
+      &__item {
+        display: flex;
+        padding: var.$spacing-md;
+        border-bottom: 1px solid var.$color-primary-500;
+        justify-content: center;
+
+        &:hover,
+        &--active {
+          color: var.$color-primary-500;
+          border-bottom: 2px solid var.$color-primary-700;
+        }
+      }
+    }
+  }
+
 }

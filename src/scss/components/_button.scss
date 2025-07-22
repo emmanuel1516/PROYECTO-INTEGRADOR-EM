@@ -64,6 +64,31 @@
 
     }
 
+    &--navbar-toggle {
+        display: none;
+        width: var.$spacing-xxl;
+        height: var.$spacing-xxl;
+        z-index: 100;
+        background-color: var.$color-primary-200;
+        box-shadow: none;
+        border: none;
+
+        &:hover {
+            background-color: var.$color-primary-300;
+            outline: 1px solid var.$color-primary-700;
+        }
+
+        &:active {
+            background-color: var.$color-primary-400;
+            outline: 1px solid var.$color-primary-800;
+        }
+
+        @media (max-width: 768px) {
+            display: flex;
+        }
+
+    }
+
     .button__icon {
         width: 100%;
         height: 30px;

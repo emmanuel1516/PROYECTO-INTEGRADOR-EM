@@ -2,7 +2,6 @@
 @use "../abstracts/variables" as var;
 
 .card {
-
     display: flex;
     flex-direction: column;
     gap: var.$spacing-md;
@@ -52,5 +51,41 @@
             cursor: pointer;
         }
     }
+
+    @media (max-width: 1200px) {
+        &__description {
+            font-size: var.$font-size-md;
+        }
+    }
+
+    @media (max-width: 768px) {
+        &__title {
+            font-size: var.$font-size-xl;
+        }
+
+        &__description {
+            font-size: var.$font-size-sm;
+        }
+
+        &__price {
+            font-size: var.$font-size-md;
+        }
+    }
+
+    @media (max-width: 480px) {
+        &__title {
+            font-size: var.$font-size-md;
+        }
+
+        &__description {
+            font-size: var.$font-size-sm;
+        }
+
+        &__price {
+            font-size: var.$font-size-sm;
+        }
+    }
+
+
 
 }

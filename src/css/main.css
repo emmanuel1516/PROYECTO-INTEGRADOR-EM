@@ -78,6 +78,33 @@ img {
 .card__actions .button {
   cursor: pointer;
 }
+@media (max-width: 1200px) {
+  .card__description {
+    font-size: 1rem;
+  }
+}
+@media (max-width: 768px) {
+  .card__title {
+    font-size: 1.5rem;
+  }
+  .card__description {
+    font-size: 0.875rem;
+  }
+  .card__price {
+    font-size: 1rem;
+  }
+}
+@media (max-width: 480px) {
+  .card__title {
+    font-size: 1rem;
+  }
+  .card__description {
+    font-size: 0.875rem;
+  }
+  .card__price {
+    font-size: 0.875rem;
+  }
+}
 
 .slider {
   position: relative;
@@ -103,10 +130,25 @@ img {
   background-color: #ffffff;
 }
 .slider__slide-image {
-  width: 50%;
+  width: 35%;
   height: 100%;
   object-fit: cover;
   object-position: center;
+}
+@media (max-width: 1200px) {
+  .slider__slide-image {
+    width: 60%;
+  }
+}
+@media (max-width: 768px) {
+  .slider__slide-image {
+    width: 70%;
+  }
+}
+@media (max-width: 480px) {
+  .slider__slide-image {
+    width: 100%;
+  }
 }
 .slider__slide-label {
   position: absolute;
@@ -119,6 +161,11 @@ img {
   font-weight: bold;
   font-size: 2rem;
   z-index: 1;
+}
+@media (max-width: 768px) {
+  .slider__slide-label {
+    font-size: 1.5rem;
+  }
 }
 @keyframes move-slide {
   0% {
@@ -197,6 +244,28 @@ img {
   background-color: #cfa37c;
   outline: 1px solid #7c5032;
 }
+.button--navbar-toggle {
+  display: none;
+  width: 2.5rem;
+  height: 2.5rem;
+  z-index: 100;
+  background-color: #f1e0d3;
+  box-shadow: none;
+  border: none;
+}
+.button--navbar-toggle:hover {
+  background-color: #e2c3a8;
+  outline: 1px solid #7c5032;
+}
+.button--navbar-toggle:active {
+  background-color: #cfa37c;
+  outline: 1px solid #5c3926;
+}
+@media (max-width: 768px) {
+  .button--navbar-toggle {
+    display: flex;
+  }
+}
 .button .button__icon {
   width: 100%;
   height: 30px;
@@ -250,7 +319,7 @@ body {
   background-color: #f8f9fa;
   height: 100vh;
   display: grid;
-  grid-template-areas: "header" "navbar" "main" "footer";
+  grid-template-areas: "header" "main" "footer";
   grid-template-rows: max-content max-content 1fr max-content;
 }
 
@@ -274,6 +343,11 @@ header {
   justify-content: space-between;
   background-color: #f1e0d3;
 }
+header .navbar-toggle {
+  display: flex;
+  align-items: flex-end;
+  padding: 0.25rem 1rem;
+}
 
 main {
   grid-area: main;
@@ -281,12 +355,12 @@ main {
 }
 
 nav {
-  grid-area: navbar;
   position: absolute;
   bottom: 0.5rem;
   width: 100%;
   justify-content: center;
   display: flex;
+  z-index: 500;
 }
 nav .navbar {
   display: flex;
@@ -304,6 +378,42 @@ nav .navbar__item:hover, nav .navbar__item--active {
   font-weight: 700;
   border-bottom: 2px solid #b98350;
   color: #b98350;
+}
+@media (max-width: 768px) {
+  nav {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin: -8px 0;
+  }
+  nav .navbar {
+    position: absolute;
+    display: none;
+    flex-direction: column;
+    top: 100%;
+    width: 50%;
+    right: -4.5rem;
+    margin: 0;
+    background-color: #f1e0d3;
+    text-align: center;
+    justify-content: center;
+    border-radius: 0 0 1rem 1rem;
+  }
+  nav .navbar--active {
+    overflow: hidden;
+    display: flex;
+  }
+  nav .navbar__item {
+    display: flex;
+    padding: 1rem;
+    border-bottom: 1px solid #b98350;
+    justify-content: center;
+  }
+  nav .navbar__item:hover, nav .navbar__item--active {
+    color: #b98350;
+    border-bottom: 2px solid #7c5032;
+  }
 }
 
 .page-home {
@@ -387,12 +497,59 @@ nav .navbar__item:hover, nav .navbar__item--active {
   width: 35%;
   margin: 0 0.5rem 0.25rem 0;
 }
+@media (max-width: 1200px) {
+  .page-about-us .approaches-container .mission__description,
+  .page-about-us .approaches-container .vision__description,
+  .page-about-us .approaches-container .values__description {
+    font-size: 0.875rem;
+  }
+  .page-about-us .approaches-container .mission__description p,
+  .page-about-us .approaches-container .mission__description ul li,
+  .page-about-us .approaches-container .mission__description ul li strong,
+  .page-about-us .approaches-container .vision__description p,
+  .page-about-us .approaches-container .vision__description ul li,
+  .page-about-us .approaches-container .vision__description ul li strong,
+  .page-about-us .approaches-container .values__description p,
+  .page-about-us .approaches-container .values__description ul li,
+  .page-about-us .approaches-container .values__description ul li strong {
+    font-size: 0.875rem;
+  }
+}
+@media (max-width: 768px) {
+  .page-about-us .approaches-container .mission,
+  .page-about-us .approaches-container .vision,
+  .page-about-us .approaches-container .values {
+    flex-direction: column;
+  }
+  .page-about-us .approaches-container .mission__image,
+  .page-about-us .approaches-container .vision__image,
+  .page-about-us .approaches-container .values__image {
+    width: 80%;
+  }
+}
+@media (max-width: 480px) {
+  .page-about-us .approaches-container .mission,
+  .page-about-us .approaches-container .vision,
+  .page-about-us .approaches-container .values {
+    flex-direction: column;
+  }
+}
 .page-about-us .approaches-container .vision {
   flex-direction: row-reverse;
   background-color: transparent;
 }
 .page-about-us .approaches-container .vision__image {
   margin: 0 0 0.25rem 0.5rem;
+}
+@media (max-width: 768px) {
+  .page-about-us .approaches-container .vision {
+    flex-direction: column;
+  }
+}
+@media (max-width: 480px) {
+  .page-about-us .approaches-container .vision {
+    flex-direction: column;
+  }
 }
 
 .page-contact {
@@ -500,4 +657,19 @@ nav .navbar__item:hover, nav .navbar__item--active {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 1rem;
+}
+@media (max-width: 1200px) {
+  .page-products .gallery {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+@media (max-width: 768px) {
+  .page-products .gallery {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (max-width: 480px) {
+  .page-products .gallery {
+    grid-template-columns: 1fr;
+  }
 }

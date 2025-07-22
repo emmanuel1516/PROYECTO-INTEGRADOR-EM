@@ -9,6 +9,9 @@ export function productCartCounter() {
     const btnRemove = card.querySelector('.button--remove');
     const counterSpan = card.querySelector('.card__counter');
 
+
+    if (!btnAdd || !btnRemove || !counterSpan) return;// Si no existe el contador como en el index va a dar error, con esta línea se evita
+
     // Mostrar el contador guardado (o 0 si no existe)
     counterSpan.textContent = cartCounts[id] || 0;
 
