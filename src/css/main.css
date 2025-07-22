@@ -392,7 +392,7 @@ nav .navbar__item:hover, nav .navbar__item--active {
     display: none;
     flex-direction: column;
     top: 100%;
-    width: 50%;
+    width: 80%;
     right: -4.5rem;
     margin: 0;
     background-color: #f1e0d3;
@@ -413,6 +413,11 @@ nav .navbar__item:hover, nav .navbar__item--active {
   nav .navbar__item:hover, nav .navbar__item--active {
     color: #b98350;
     border-bottom: 2px solid #7c5032;
+  }
+}
+@media (max-width: 480px) {
+  nav .navbar {
+    width: 130%;
   }
 }
 

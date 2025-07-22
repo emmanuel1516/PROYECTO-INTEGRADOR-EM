@@ -47,7 +47,7 @@ nav {
       display: none;
       flex-direction: column;
       top: 100%;
-      width: 50%;
+      width: 80%;
       right: calc(var.$spacing-xxl * -1.8);
       margin: 0;
       background-color: var.$color-primary-200;
@@ -73,6 +73,13 @@ nav {
         }
       }
     }
+  }
+
+  @media (max-width: 480px) {
+    .navbar {
+      width: 130%;
+    }
+
   }
 
 }
