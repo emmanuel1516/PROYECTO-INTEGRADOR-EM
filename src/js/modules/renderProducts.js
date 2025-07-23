@@ -61,8 +61,19 @@ function renderProduct(product) {
     description.classList.add('card__description');
 
     const seeMoreButton = document.createElement('button');
-    seeMoreButton.textContent= 'Ver más';
+    seeMoreButton.textContent= 'Ver más..';
     seeMoreButton.classList.add('button--see-more');
+
+    seeMoreButton.addEventListener('click', () => {
+        card.classList.toggle('card--expanded');
+        seeMoreButton.textContent = card.classList.contains('card--expanded') ? 'Ver menos..' : 'Ver más..';
+    });
+
+    // Agregamos un contenedor para poder manipular mejor al button
+    const buttonContainer = document.createElement('div');
+    buttonContainer.classList.add('card__container-button');
+    buttonContainer.appendChild(seeMoreButton);
+
 
     const price = document.createElement('span');
     price.textContent = `$${product.price.toLocaleString()}`;
@@ -91,7 +102,7 @@ function renderProduct(product) {
     card.appendChild(title);
     card.appendChild(code);
     card.appendChild(description);
-    card.appendChild(seeMoreButton);
+    card.appendChild(buttonContainer);
     card.appendChild(price);
     card.appendChild(actions);
 

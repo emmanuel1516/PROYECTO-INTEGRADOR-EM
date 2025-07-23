@@ -89,6 +89,35 @@
 
     }
 
+    &--see-more {
+        text-align: right;
+        font-size: var.$font-size-md;
+        color: var.$color-primary-500;
+        background-color: transparent;
+        border: none;
+        cursor: pointer;
+
+        &:hover {
+            color: var.$color-primary-700;
+        }
+
+        &:focus {
+            outline: none;
+        }
+
+        @media (max-width: 1200px) {
+            font-size: var.$font-size-sm;
+        }
+
+        @media (max-width: 768px) {
+            font-size: var.$font-size-xs;
+        }
+
+        @media (max-width: 480px) {
+            font-size: var.$font-size-xs;
+        }
+    }
+
     .button__icon {
         width: 100%;
         height: 30px;
