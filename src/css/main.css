@@ -567,7 +567,7 @@ nav .navbar__item:hover, nav .navbar__item--active {
   .page-about-us .approaches-container .mission__image,
   .page-about-us .approaches-container .vision__image,
   .page-about-us .approaches-container .values__image {
-    width: 80%;
+    width: 100%;
   }
 }
 @media (max-width: 480px) {
