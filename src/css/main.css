@@ -658,15 +658,21 @@ nav .navbar__item:hover, nav .navbar__item--active {
 .page-contact .content .contact-data__content {
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  gap: 1rem;
   padding: 1rem;
   border: 1px solid #7c5032;
   border-radius: 1rem 0;
 }
 .page-contact .content .contact-data__item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
   font-size: 0.875rem;
   font-weight: 700;
   color: #3b241a;
+}
+.page-contact .content .contact-data__item img {
+  width: 16px;
 }
 
 .page-products__head {
