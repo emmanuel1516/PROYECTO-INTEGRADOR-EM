@@ -8,7 +8,6 @@ export function initSearch() {
   const searchButton = document.getElementById('searchButton');
 
   if (!searchInput || !searchButton) {
-    console.warn('No se encontró el input o botón de búsqueda.');
     return;
   }
 

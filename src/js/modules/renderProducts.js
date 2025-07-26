@@ -9,7 +9,6 @@ export function renderProducts(products) {
 
         products.forEach(product => {
             const card = renderProduct(product);
-            console.log(product)
             productsContainer.appendChild(card);
         });
 
@@ -29,7 +28,6 @@ export function renderFeaturedProducts(products) {
         products.forEach(product => {
             if (!product.featured) return; // Solo renderizar productos destacados
             const card = renderFeaturedProduct(product);
-            console.log(product)
             productsContainer.appendChild(card);
         });
     }catch (error) {

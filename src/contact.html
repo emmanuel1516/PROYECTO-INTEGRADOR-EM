@@ -68,31 +68,33 @@
                         <div class="form__group">
                             <label class="form__group__label" for="id-name">Nombre:</label>
                             <input class="form__group__input" type="text" name="name" id="id-name" minlength="2"
-                                maxlength="15" placeholder="Ingresa tu nombre" required>
+                                maxlength="15" placeholder="Ingresa tu nombre" autocomplete="given-name" required>
                         </div>
 
                         <div class="form__group">
                             <label class="form__group__label" for="id-surname">Apellido:</label>
-                            <input class="form__group__text" type="text" name="apellido" id="id-surname" minlength="2"
-                                maxlength="15" placeholder="Ingresa tu apellido" required>
+                            <input class="form__group__input" type="text" name="apellido" id="id-surname" minlength="2"
+                                maxlength="15" placeholder="Ingresa tu apellido" autocomplete="family-name" required>
                         </div>
 
                         <div class="form__group">
                             <label class="form__group__label" for="id-email">Email:</label>
-                            <input class="form__group__email" type="email" name="email" id="id-email" minlength="10"
-                                maxlength="50" placeholder="Ingresa tu correo electrónico" required>
+                            <input class="form__group__input" type="email" name="email" id="id-email" minlength="10"
+                                maxlength="50" placeholder="Ingresa tu correo electrónico" autocomplete="email"
+                                required>
                         </div>
 
                         <div class="form__group">
                             <label class="form__group__label" for="id-phone">Teléfono:</label>
-                            <input class="form__group__phone" type="text" name="phone" id="id-phone" maxlength="15"
-                                placeholder="Ingresa tu número telefónico" required>
+                            <input class="form__group__input" type="text" name="phone" id="id-phone" maxlength="15"
+                                placeholder="Ingresa tu número telefónico" autocomplete="tel" required>
                         </div>
 
                         <div class="form__group">
                             <label class="form__group__label" for="id-query">Consulta:</label>
                             <textarea class="form__group__text" name="query" id="id-query" cols="60" rows="5"
-                                maxlength="250" placeholder="Ingresa tu consulta"></textarea>
+                                maxlength="250" placeholder="Ingresa tu consulta" autocomplete="off"
+                                required></textarea>
                         </div>
 
                         <input class="button button--primary" type="submit" value="Enviar">
