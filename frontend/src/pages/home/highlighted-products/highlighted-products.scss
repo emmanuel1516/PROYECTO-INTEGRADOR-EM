@@ -1,0 +1,31 @@
+@use "@/scss/variables" as var;
+
+.highlighted-products {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var.$spacing-md;
+    align-items: stretch;
+    background-color: var.$color-neutro-300;
+    padding: var.$spacing-lg;
+    border-radius: var.$spacing-md;
+
+    @media (max-width: 1200px) {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    @media (max-width: 1024px) {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media (max-width: 768px) {
+        grid-template-columns: 1fr;
+    }
+
+    @media (max-width: 576px) {
+        grid-template-columns: 1fr;
+    }
+
+    &__card {
+        border-radius: var.$spacing-md 0 var.$spacing-md 0;
+    }
+}

@@ -1,0 +1,13 @@
+@use "@/scss/variables" as var;
+
+.navbar-list {
+    display: flex;
+
+    color: aqua !important;
+
+    @media (max-width: 768px) {
+        flex-direction: column;
+        width: fit-content;
+        min-width: 200px;
+    }
+}

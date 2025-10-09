@@ -1,0 +1,81 @@
+@use "@/scss/variables" as var;
+@use "@/scss/typography";
+
+.vision {
+    display: flex;
+    align-items: center;
+    flex-direction: row-reverse;
+    gap: var.$spacing-md;
+    padding: var.$spacing-xl;
+    border-radius: var.$spacing-md;
+    background-color: var.$color-neutro-300;
+
+    &__content {
+        display: flex;
+        flex-direction: column;
+        gap: var.$spacing-md;
+    }
+
+
+    &__title {
+        color: var.$color-neutro-900;
+        font-size: var.$font-size-lg;
+        font-weight: var.$font-weight-bold;
+        padding-bottom: var.$spacing-xs;
+        font-family: 'RobotoMono';
+    }
+
+    &__description {
+        color: var.$color-neutro-700;
+        font-size: var.$font-size-md;
+        font-weight: var.$font-weight-regular;
+        text-align: justify;
+        font-family: 'RobotoMono';
+    }
+
+    &__image {
+        border-radius: var.$spacing-md;
+        height: fit-content;
+        width: 35%;
+        margin: 0 var.$spacing-sm var.$spacing-xs 0;
+    }
+
+
+
+    &__image {
+        margin: 0 0 var.$spacing-xs var.$spacing-sm;
+
+    }
+
+    @media (max-width: 768px) {
+        flex-direction: column;
+    }
+
+    @media (max-width: 480px) {
+        flex-direction: column;
+    }
+
+    @media (max-width: 1200px) {
+        &__description {
+            font-size: var.$font-size-sm;
+
+            p,
+            ul li,
+            ul li strong {
+                font-size: var.$font-size-sm;
+            }
+        }
+    }
+
+    @media (max-width: 768px) {
+        flex-direction: column;
+
+        &__image {
+            width: 100%;
+        }
+    }
+
+    @media (max-width: 480px) {
+        flex-direction: column;
+    }
+}

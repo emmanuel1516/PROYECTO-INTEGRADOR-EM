@@ -1,0 +1,51 @@
+@use "@/scss/variables" as var;
+
+.input {
+    position: relative;
+    max-width: 400px;
+
+    &__helper-text {
+        position: absolute;
+        bottom: -1.25rem;
+    }
+
+    &--valid {
+
+        p,
+        label,
+        label.Mui-focused {
+            color: var.$color-primary-800 !important;
+        }
+
+        div input+fieldset,
+        div input~.MuiOutlinedInput-notchedOutline,
+        div textarea+fieldset,
+        div input:focus+fieldset,
+        div input:focus~.MuiOutlinedInput-notchedOutline,
+        div textarea:focus~.MuiOutlinedInput-notchedOutline {
+            border-color: var.$color-primary-800 !important;
+        }
+    }
+
+    &--invalid {
+
+        p,
+        label,
+        label.Mui-focused {
+            color: var.$color-danger-500 !important;
+        }
+
+        div input+fieldset,
+        div input~.MuiOutlinedInput-notchedOutline,
+        div textarea+fieldset,
+        div input:focus+fieldset,
+        div input:focus~.MuiOutlinedInput-notchedOutline,
+        div textarea:focus~.MuiOutlinedInput-notchedOutline {
+            border-color: var.$color-danger-500 !important;
+        }
+    }
+
+    @media (max-width: 768px) {
+        width: 100% !important;
+    }
+}

@@ -1,0 +1,27 @@
+@use "@/scss/variables" as var;
+
+.header {
+    grid-area: header;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    background-color: var.$color-primary-200;
+
+    &__institution {
+        grid-column: 2;
+    }
+
+    &__shopping-cart {
+        grid-column: 3;
+        display: flex;
+        margin: var.$spacing-md !important;
+        justify-self: end;
+        align-self: start;
+
+        span {
+            span {
+                background-color: var.$color-primary-500 !important;
+            }
+        }
+    }
+
+}
