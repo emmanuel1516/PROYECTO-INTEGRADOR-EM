@@ -14,7 +14,7 @@ const Home = () => {
                 <Text variant="h3">Productos Destacados</Text>
                 <HighlightedProducts/>
             </div>
-            
+
         </div>
     );
 };

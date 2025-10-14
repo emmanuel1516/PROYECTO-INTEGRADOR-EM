@@ -12,11 +12,7 @@ const HighlightedProductCard = (props) => {
         ...restProps
     } = props;
 
-
-
-
     const classes = `highlighted-product-card ${className ?? ""}`;
-
 
     return (
         <MuiCard className={classes} {...restProps}>
@@ -25,7 +21,7 @@ const HighlightedProductCard = (props) => {
                     className="highlighted-product-card__image"
                     src={`/images/products/${product.thumbnail}`}
                     alt="Imagen del producto"/>
-                
+
             </Skeleton>
 
             <div className="highlighted-product-card__content">

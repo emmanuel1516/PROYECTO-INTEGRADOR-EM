@@ -21,7 +21,7 @@ const Navbar = () => {
             <NavbarList className="navbar__menu-list"/>
             <Drawer
                 className="navbar__menu-drawer"
-                open={openDrawer}  
+                open={openDrawer}
                 anchor="left"
                 onClose={onClickCloseDrawer}>
                 <NavbarList className="navbar__menu-drawer-list"/>

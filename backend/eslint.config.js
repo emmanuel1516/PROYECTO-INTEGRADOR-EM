@@ -1,8 +1,4 @@
 import js from "@eslint/js";
-import react from "eslint-plugin-react";
-import reactHooks from "eslint-plugin-react-hooks";
-import reactRefresh from "eslint-plugin-react-refresh";
-import globals from "globals";
 
 export default [
     {
@@ -10,61 +6,20 @@ export default [
             "node_modules/**",
             "dist/**",
             "build/**",
+            "*.min.js",
+            "*.bundle.js",
+            "public/**",
         ],
     },
     {
-        files: [ "**/*.js", "**/*.jsx" ],
+        files: ["**/*.js"],
         languageOptions: {
             ecmaVersion: "latest",
             sourceType: "module",
-            globals: {
-                ...globals.browser,
-                ...globals.es2025,
-            },
-            parserOptions: {
-                ecmaFeatures: {
-                    jsx: true,
-                },
-            },
-        },
-        plugins: {
-            react,
-            "react-hooks": reactHooks,
-            "react-refresh": reactRefresh,
-        },
-        settings: {
-            react: {
-                version: "18.3.1",
-            },
-            "import/resolver": {
-                alias: {
-                    map: [
-                        [ "@", "./src" ],
-                    ],
-                    extensions: [ ".js", ".jsx", ".json" ],
-                },
-            },
         },
         rules: {
             // ▼ Reglas base de ESLint =========================================================
             ...js.configs.recommended.rules,
-            ...react.configs.recommended.rules,
-            ...reactHooks.configs.recommended.rules,
-
-            // ▼ Reglas de React  ==============================================================
-            "react/react-in-jsx-scope": "off",
-            "react-refresh/only-export-components": [ "warn", { allowConstantExport: true }],
-            "react/jsx-max-props-per-line": [ "error", { "maximum": 1, "when": "multiline" }],
-            "react/jsx-first-prop-new-line": [ "error", "multiline" ],
-            "react/jsx-wrap-multilines": "off",
-            "react/jsx-closing-bracket-location": [ "error", "after-props" ],
-            "jsx-quotes": [ "error", "prefer-double" ],
-            "react-hooks/exhaustive-deps": "off",
-
-            // ▼ Reglas de React PropTypes (con prioridad) =====================================
-            "react/prop-types": "error",
-            "react/no-unused-prop-types": "error",
-            "react/forbid-prop-types": "error",
 
             // ▼ Reglas de Formato y Sintaxis ==================================================
             "semi": [ "error", "always" ],

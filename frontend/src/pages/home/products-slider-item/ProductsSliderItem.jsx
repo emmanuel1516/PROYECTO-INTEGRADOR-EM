@@ -11,8 +11,7 @@ const ProductsSliderItem = (props) => {
         ...restProps
     } = props;
 
-     const classes = `products-slider-item ${className ?? ""}`;
-
+    const classes = `products-slider-item ${className ?? ""}`;
 
     return (
 

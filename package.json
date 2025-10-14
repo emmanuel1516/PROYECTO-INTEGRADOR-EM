@@ -1,0 +1,22 @@
+{
+  "name": "proyecto-integrador-eit",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "install:backend": "cd backend && npm install",
+    "install:frontend": "cd frontend && npm install",
+    "build": "npm run install:backend && npm run install:frontend && cd frontend && npm run build",
+    "dev": "concurrently \"cd backend && npm run dev\" \"cd frontend && npm run dev\" --names \"backend,frontend\"",
+    "lint": "concurrently \"cd backend && npm run lint\" \"cd frontend && npm run lint\" --names \"backend,frontend\""
+  },
+  "keywords": [],
+  "author": "Emmanuel Martínez",
+  "license": "MIT",
+  "workspaces": [
+    "backend",
+    "frontend"
+  ],
+  "devDependencies": {
+    "concurrently": "^9.2.1"
+  }
+}
