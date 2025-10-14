@@ -1,0 +1,31 @@
+@use "@/scss/variables" as var;
+@use "@/scss/typography";
+
+.institution-logo {
+    width: 100%;
+
+    &__link {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center !important;
+        align-items: center !important;
+    }
+
+    &__logo {
+        display: flex;
+        width: var.$logo-size;
+        height: fit-content;
+        margin-bottom: -35px;
+    }
+
+    &__title {
+        display: flex;
+        width: 100%;
+        font-size: var.$font-size-xxl;
+        font-family: 'LobsterRegular', cursive;
+        align-items: center !important;
+        justify-content: center !important;
+    }
+
+}
