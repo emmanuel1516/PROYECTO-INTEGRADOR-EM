@@ -2,12 +2,12 @@
   "version": 2,
   "builds": [
     {
-      "src": "backend/public/**",
-      "use": "@vercel/static"
-    },
-    {
       "src": "backend/src/app.js",
       "use": "@vercel/node"
+    },
+    {
+      "src": "backend/public/**",
+      "use": "@vercel/static"
     },
     {
       "src": "frontend/package.json",
