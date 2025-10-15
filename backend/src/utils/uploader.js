@@ -7,7 +7,7 @@ import { generateNameForFile } from "./random.js";
 const storage = multer.diskStorage({
     // Define el destino para almacenar las imágenes de productos subidas
     destination: (req, file, callback) => {
-        callback(null, paths.imageProducts);
+        callback(null, paths.imagesProducts);
     },
     // Define el nombre del archivo subido
     filename: (req, file, callback) => {
