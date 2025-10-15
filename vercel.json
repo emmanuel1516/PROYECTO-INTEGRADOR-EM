@@ -25,10 +25,6 @@
       "dest": "backend/src/app.js"
     },
     {
-      "src": "/assets/(.*)",
-      "dest": "frontend/assets/$1"
-    },
-    {
       "src": "/(.*\\.(js|css|ico|png|jpg|jpeg|svg|gif|webp|woff|woff2|ttf|eot))",
       "dest": "frontend/$1"
     },
