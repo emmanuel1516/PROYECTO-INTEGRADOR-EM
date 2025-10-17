@@ -9,6 +9,7 @@ import PropTypes from "prop-types";
 import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import "./product-item.scss";
+import { API_URL_IMAGES } from "@/constants/api.constant";
 
 const ProductItem = (props) => {
     const {
@@ -34,6 +35,12 @@ const ProductItem = (props) => {
 
     const handleSubtractArticle = () => {
         subtractArticle(product.id, 1);
+    };
+
+    const getSourceImage = () => {
+        return product.thumbnail === "default.jpg"
+            ? `${API_URL_IMAGES}/${product.thumbnail}`
+            : `${API_URL_IMAGES}/products/${product.thumbnail}`;
     };
 
     const formatPrice = (value) => {
@@ -66,7 +73,7 @@ const ProductItem = (props) => {
                 <CardActionArea>
                     <img
                         className="product-item__image"
-                        src={`/images/products/${product.thumbnail}`}
+                        src={getSourceImage()}
                         alt="Imagen del producto"
                         onClick={handleEditProduct}/>
                 </CardActionArea>
@@ -93,7 +100,7 @@ const ProductItem = (props) => {
 
 ProductItem.propTypes = {
     product: PropTypes.shape({
-        id: PropTypes.number.isRequired,
+        id: PropTypes.string.isRequired,
         name: PropTypes.string.isRequired,
         description: PropTypes.string.isRequired,
         price: PropTypes.number.isRequired,

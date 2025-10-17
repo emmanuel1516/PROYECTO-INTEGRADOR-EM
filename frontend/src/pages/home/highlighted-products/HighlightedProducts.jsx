@@ -7,7 +7,7 @@ const HighlightedProducts = () => {
     const { productsContext } = useContext(AppContext);
     const { products, isLoading } = productsContext;
 
-    const highlightedProducts = products.filter((p) => p.highlighted);
+    const highlightedProducts = products.filter((product) => product.highlighted);
 
     return (
         <div className="highlighted-products">

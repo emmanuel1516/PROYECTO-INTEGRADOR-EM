@@ -1,38 +1,42 @@
+import AppContext from "@/contexts/AppContext.js";
 import { useFormik } from "formik";
-import { useState } from "react";
+import { useContext } from "react";
 import { initialValues } from "./contact-form.initial-value.js";
 import { validationSchema } from "./contact-form.validation-schema.js";
 
 const useContactForm = () => {
-    const [ isSubmitted, setIsSubmitted ] = useState(false);
+    const { inquiryContext } = useContext(AppContext);
+    const { sendInquiry, isLoading, success, error } = inquiryContext;
 
     const formik = useFormik({
         initialValues,
         validationSchema,
         validateOnChange: true,
         validateOnBlur: true,
-        onSubmit: (values) => {
-            console.log("values", values);
+        onSubmit: async (values) => {
+            await sendInquiry(values);
             formik.resetForm();
-            setIsSubmitted(true);
         },
     });
 
     const isSubmitDisabled = () => {
-        return isSubmitted
+        return isLoading
             || !formik.values.name
             || !formik.values.surname
             || !formik.values.email
             || formik.values.phone?.length < 8
             || formik.values.phone?.length > 15
             || !formik.values.inquiry
+            || formik.values.inquiry?.length < 10
             || !formik.isValid;
     };
 
     return {
         formik,
         isSubmitDisabled,
-        isSubmitted,
+        isLoading,
+        success,
+        error,
     };
 
 };

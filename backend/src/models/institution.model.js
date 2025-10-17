@@ -55,7 +55,7 @@ const institutionSchema = new Schema({
             required: [ true, "La descripción de la misión es obligatoria" ],
             trim: true,
         },
-        thumbnail: {
+        image: {
             type: String,
             required: [ true, "El nombre de la imagen de la misión es obligatoria" ],
             trim: true,
@@ -67,7 +67,7 @@ const institutionSchema = new Schema({
             required: [ true, "La descripción de la visión es obligatoria" ],
             trim: true,
         },
-        thumbnail: {
+        image: {
             type: String,
             required: [ true, "El nombre de la imagen de la visión es obligatoria" ],
             trim: true,
@@ -79,7 +79,7 @@ const institutionSchema = new Schema({
             required: [ true, "La descripción de los valores es obligatoria" ],
             trim: true,
         },
-        thumbnail: {
+        image: {
             type: String,
             required: [ true, "El nombre de la imagen de los valores es obligatoria" ],
             trim: true,

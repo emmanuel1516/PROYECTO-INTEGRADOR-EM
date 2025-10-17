@@ -4,7 +4,8 @@ const NAME_MAX_LENGTH = 25;
 const SURNAME_MAX_LENGTH = 25;
 const PHONE_MIN_LENGTH = 8;
 const PHONE_MAX_LENGTH = 15;
-const INQUIRY_MAX_LENGTH = 100;
+const INQUIRY_MIN_LENGTH = 10;
+const INQUIRY_MAX_LENGTH = 120;
 
 export const validationSchema = Yup.object({
     name: Yup
@@ -26,6 +27,7 @@ export const validationSchema = Yup.object({
         .required("El teléfono es obligatorio"),
     inquiry: Yup
         .string()
+        .min(INQUIRY_MIN_LENGTH, `La consulta debe tener al menos ${INQUIRY_MIN_LENGTH} caracteres`)
         .max(INQUIRY_MAX_LENGTH, `La consulta no puede tener más de ${INQUIRY_MAX_LENGTH} caracteres`)
         .required("La consulta es obligatoria"),
 });

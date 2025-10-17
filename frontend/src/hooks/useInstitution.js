@@ -2,8 +2,8 @@ import { useEffect, useState } from "react";
 import institutionApi from "../api/institution.api.js";
 
 export const useInstitution = () => {
-    const [ institution, setInstitution ] = useState(null);
-    const [ isLoading, setIsLoading ] = useState(false);
+    const [ institution, setInstitution ] = useState({});
+    const [ isLoading, setIsLoading ] = useState(true);
     const [ error, setError ] = useState(null);
 
     const fetchInstitution = async () => {
@@ -14,7 +14,7 @@ export const useInstitution = () => {
             const data = await institutionApi.fetchInstitution();
             setInstitution(data);
         } catch (error) {
-            setInstitution(null);
+            setInstitution({});
             setError(error.message || "Error al cargar la institución.");
         }
 

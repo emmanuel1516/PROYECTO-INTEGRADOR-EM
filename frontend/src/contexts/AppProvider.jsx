@@ -3,12 +3,14 @@ import AppContext from "./AppContext";
 import { useProduct } from "@/hooks/useProduct";
 import { useShoppingCart } from "@/hooks/useShoppingCart";
 import { useInstitution } from "@/hooks/useInstitution";
+import { useInquiry } from "@/hooks/useInquiry";
 
 const AppProvider = (props) => {
     const { children } = props;
     const institutionContext = useInstitution();
     const productsContext = useProduct();
     const shoppingCartContext = useShoppingCart();
+    const inquiryContext = useInquiry();
 
     return (
         <AppContext.Provider
@@ -16,6 +18,7 @@ const AppProvider = (props) => {
                 productsContext,
                 shoppingCartContext,
                 institutionContext,
+                inquiryContext,
             }}>
             {children}
         </AppContext.Provider>

@@ -1,4 +1,5 @@
 import { Skeleton } from "@/components/skeleton";
+import { API_URL_IMAGES } from "@/constants/api.constant";
 import { Card as MuiCard } from "@mui/material";
 import PropTypes from "prop-types";
 import "./products-slider-item.scss";
@@ -19,7 +20,7 @@ const ProductsSliderItem = (props) => {
             <Skeleton className="products-slider-item__image--skeleton" isLoading={isLoading}>
                 <img
                     className="products-slider-item__image"
-                    src={`/images/products/${product.thumbnail}`}
+                    src={`${API_URL_IMAGES}/products/${product.thumbnail}`}
                     alt="Imagen del producto"/>
             </Skeleton>
             <p className="products-slider-item__label">20% OFF en lanzamientos</p>

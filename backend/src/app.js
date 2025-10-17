@@ -14,9 +14,9 @@ import institutionRouter from "./routes/institution.router.js";
 import productRouter from "./routes/product.router.js";
 
 const app = express();
+configCors(app);
 configJson(app);
 configStatic(app);
-configCors(app);
 connectDB();
 
 const PORT = process.env.PORT;

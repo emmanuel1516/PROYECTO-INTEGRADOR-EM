@@ -1,3 +1,4 @@
+import AlertDangerForm from "@/components/alerts/AlertDangerForm";
 import AlertSuccessForm from "@/components/alerts/AlertSuccessForm";
 import { ButtonPrimary } from "@/components/buttons";
 import { InputEmail, InputInquiry, InputName, InputPhone, InputSurname } from "@/components/inputs";
@@ -9,7 +10,7 @@ const ContactForm = (props) => {
     const { className, ...restProps } = props;
     const classes = `contact-form ${className ?? ""}`;
 
-    const { formik, isSubmitted, isSubmitDisabled } = useContactForm();
+    const { formik, isSubmitDisabled, isLoading, success, error } = useContactForm();
 
     return (
         <form className={classes} onSubmit={formik.handleSubmit} {...restProps}>
@@ -25,8 +26,11 @@ const ContactForm = (props) => {
 
             <div className="contact-form__alert">
                 <AlertSuccessForm
-                    open={isSubmitted}
+                    open={!!(success && !isLoading && !error)}
                     message="Tu consulta fue enviada correctamente."/>
+                <AlertDangerForm
+                    open={!!(!success && !isLoading && error)}
+                    message={error?.message || "Error al enviar la consulta. Por favor, inténtalo de nuevo."}/>
             </div>
         </form>
     );

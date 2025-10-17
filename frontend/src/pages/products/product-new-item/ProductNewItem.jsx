@@ -2,6 +2,7 @@ import { CardActionArea, Card as MuiCard } from "@mui/material";
 import PropTypes from "prop-types";
 import { useNavigate } from "react-router-dom";
 import "./product-new-item.scss";
+import { API_URL_IMAGES } from "@/constants/api.constant";
 
 const ProductNewItem = (props) => {
     const { className, ...restProps } = props;
@@ -19,7 +20,7 @@ const ProductNewItem = (props) => {
             <CardActionArea>
                 <img
                     className="product-new-item__image"
-                    src="/images/products/create.png"
+                    src={`${API_URL_IMAGES}/products/create.png`}
                     alt="Crear producto"
                     onClick={handleCreateProduct}/>
             </CardActionArea>

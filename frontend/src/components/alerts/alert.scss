@@ -41,7 +41,8 @@
         border-color: var.$color-danger-500;
     }
 
-    &--success-form {
+    &--success-form,
+    &--danger-form {
         position: static !important;
         display: flex;
         justify-content: center;

@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 import "./alert.scss";
 
 const Alert = (props) => {
-    const { open, message, variant, className = "", ...restProps } = props;
+    const { open, message, variant, onClose, className = "", ...restProps } = props;
     const classes = `alert alert--${variant} ${className ?? ""}`;
     const [ openAlert, setOpenAlert ] = useState(false);
 
@@ -14,15 +14,19 @@ const Alert = (props) => {
         setOpenAlert(open);
     }, [open]);
 
-    const onClose = () => {
+    const handleClose = () => {
         setOpenAlert(false);
+
+        if (onClose) {
+            onClose();
+        }
     };
 
     return (
         <Snackbar
             className={classes}
             open={openAlert}
-            onClose={onClose}
+            onClose={handleClose}
             autoHideDuration={3000}
             slots={{ transition: Fade }}
             {...restProps}>
@@ -40,6 +44,7 @@ Alert.propTypes = {
     open: PropTypes.bool.isRequired,
     message: PropTypes.string.isRequired,
     variant: PropTypes.oneOf([ "success", "danger" ]),
+    onClose: PropTypes.func,
     className: PropTypes.string,
 };
 

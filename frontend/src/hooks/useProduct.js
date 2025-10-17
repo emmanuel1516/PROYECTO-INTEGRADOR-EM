@@ -43,6 +43,7 @@ export const useProduct = () => {
 
         try {
             product = await productsApi.createProduct(values);
+            fetchProducts();
         } catch (error) {
             setError(error.message || "Error al crear producto.");
         }
@@ -58,6 +59,7 @@ export const useProduct = () => {
 
         try {
             product = await productsApi.updateProduct(id, values);
+            fetchProducts();
         } catch (error) {
             setError(error.message || "Error al modificar producto.");
         }
@@ -72,6 +74,7 @@ export const useProduct = () => {
 
         try {
             await productsApi.removeProduct(id);
+            fetchProducts();
         } catch (error) {
             setError(error.message || "Error al eliminar producto.");
         }
