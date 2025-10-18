@@ -82,6 +82,18 @@ export const useShoppingCart = () => {
         }
     };
 
+    const removeFromCart = async (idProduct) => {
+        const articles = shoppingCart.articles;
+
+        if (!articles || articles.length === 0) return;
+
+        const updatedArticles = articles.filter((item) => item.id !== idProduct);
+
+        const data = createShoppingCartSchema(updatedArticles);
+        localStorage.setItem(KEY_SHOPPING_CART, JSON.stringify(data));
+        setShoppingCart(data);
+    };
+
     useEffect(() => {
         getShoppingCart();
     }, []);
@@ -90,5 +102,6 @@ export const useShoppingCart = () => {
         shoppingCart,
         addArticle,
         subtractArticle,
+        removeFromCart,
     };
 };

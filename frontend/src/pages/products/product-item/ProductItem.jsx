@@ -4,9 +4,11 @@ import { Text } from "@/components/texts";
 import AppContext from "@/contexts/AppContext";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import RemoveCircleOutlineIcon from "@mui/icons-material/RemoveCircleOutline";
-import { CardActionArea, Card as MuiCard } from "@mui/material";
+import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
+import StarIcon from "@mui/icons-material/Star";
+import { CardActionArea, IconButton, Card as MuiCard } from "@mui/material";
 import PropTypes from "prop-types";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./product-item.scss";
 import { API_URL_IMAGES } from "@/constants/api.constant";
@@ -16,12 +18,14 @@ const ProductItem = (props) => {
         product,
         isLoading,
         className,
+        removeProduct,
         ...restProps
     } = props;
 
     const navigate = useNavigate();
     const { shoppingCartContext } = useContext(AppContext);
-    const { addArticle, subtractArticle } = shoppingCartContext;
+    const { addArticle, subtractArticle, removeFromCart } = shoppingCartContext;
+    const [ deleting, setDeleting ] = useState(false);
 
     const classes = `product-item ${className ?? ""}`;
 
@@ -37,6 +41,18 @@ const ProductItem = (props) => {
         subtractArticle(product.id, 1);
     };
 
+    const handleRemoveProduct = async (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        if (!removeProduct) return;
+        try {
+            setDeleting(true);
+            removeFromCart(product.id);
+            await removeProduct(product.id);
+        } finally {
+            setDeleting(false);
+        }
+    };
     const getSourceImage = () => {
         return product.thumbnail === "default.jpg"
             ? `${API_URL_IMAGES}/${product.thumbnail}`
@@ -71,6 +87,23 @@ const ProductItem = (props) => {
         <MuiCard className={classes} {...restProps}>
             <Skeleton className="product-item__image--skeleton" isLoading={isLoading}>
                 <CardActionArea>
+                    <div className="product-item__icons">
+                        {product.highlighted && (
+                            <StarIcon
+                                className="product-item__highlighted"
+                                color="warning"
+                                fontSize="small" />
+                        )}
+                        <IconButton
+                            component="div"
+                            className="product-item__garbage"
+                            size="small"
+                            onClick={handleRemoveProduct}
+                            disabled={isLoading || deleting}
+                            aria-label="Eliminar producto">
+                            <DeleteOutlineIcon className="product-item__garbage-icon" />
+                        </IconButton>
+                    </div>
                     <img
                         className="product-item__image"
                         src={getSourceImage()}
@@ -106,9 +139,11 @@ ProductItem.propTypes = {
         price: PropTypes.number.isRequired,
         stock: PropTypes.number.isRequired,
         thumbnail: PropTypes.string.isRequired,
+        highlighted: PropTypes.bool.isRequired,
     }),
     isLoading: PropTypes.bool.isRequired,
     className: PropTypes.string,
+    removeProduct: PropTypes.func.isRequired,
 };
 
 export default ProductItem;

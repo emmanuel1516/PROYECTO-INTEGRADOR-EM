@@ -1,6 +1,6 @@
 import { API_URL_IMAGES } from "@/constants/api.constant.js";
 import PropTypes from "prop-types";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import "./input.scss";
 
 const InputImage = (props) => {
@@ -12,29 +12,48 @@ const InputImage = (props) => {
         alt: "Imagen por defecto",
     });
 
+    const blobUrlRef = useRef(null);
+
     useEffect(() => {
-        if (formik.values.thumbnail === "default.jpg") {
-            setInputConfig({
-                label: "Imagen",
-                src: `${API_URL_IMAGES}/default.jpg`,
-                alt: "Imagen por defecto",
-            });
+        if (!isProduct) return;
 
-            return;
-        }
-
-        if (isProduct) {
-            const src = formik.values.image
-                ? URL.createObjectURL(formik.values.image)
-                : `${API_URL_IMAGES}/products/${formik.values.thumbnail}`;
+        if (formik.values.image instanceof File) {
+            if (blobUrlRef.current) {
+                URL.revokeObjectURL(blobUrlRef.current);
+                blobUrlRef.current = null;
+            }
+            const url = URL.createObjectURL(formik.values.image);
+            blobUrlRef.current = url;
 
             setInputConfig((prev) => ({
                 ...prev,
-                src,
+                src: url,
                 alt: "Imagen del producto",
             }));
+            return;
         }
+
+        const thumb = formik.values.thumbnail || "default.jpg";
+        const isDefault = thumb === "default.jpg";
+        const src = isDefault
+            ? `${API_URL_IMAGES}/default.jpg`
+            : `${API_URL_IMAGES}/products/${thumb}`;
+
+        setInputConfig((prev) => ({
+            ...prev,
+            src,
+            alt: isDefault ? "Imagen por defecto" : "Imagen del producto",
+        }));
     }, [ isProduct, formik.values.thumbnail, formik.values.image ]);
+
+    useEffect(() => {
+        return () => {
+            if (blobUrlRef.current) {
+                URL.revokeObjectURL(blobUrlRef.current);
+                blobUrlRef.current = null;
+            }
+        };
+    }, []);
 
     const handleChange = (event) => {
         const file = event.currentTarget.files[0];
@@ -64,7 +83,7 @@ const InputImage = (props) => {
                 name="image"
                 onChange={handleChange}
                 onBlur={formik.handleBlur}
-                {...restProps}/>
+                {...restProps} />
 
             {formik.touched.thumbnail && formik.errors.thumbnail && (
                 <span className="input__error">{formik.errors.thumbnail}</span>

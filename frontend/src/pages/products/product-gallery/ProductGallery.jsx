@@ -8,7 +8,7 @@ import "./product-gallery.scss";
 
 const ProductGallery = () => {
     const { productsContext } = useContext(AppContext);
-    const { products, isLoading } = productsContext;
+    const { products, isLoading, removeProduct } = productsContext;
     const [ searchQuery, setSearchQuery ] = useState("");
     const [ filteredProducts, setFilteredProducts ] = useState(products);
     const [ debouncedQuery, setDebouncedQuery ] = useState(searchQuery);
@@ -36,9 +36,9 @@ const ProductGallery = () => {
 
             return (
                 productName.includes(normalizedQuery) ||
-        productDescription.includes(normalizedQuery) ||
-        productTags.includes(normalizedQuery) ||
-        productCategory.includes(normalizedQuery)
+                productDescription.includes(normalizedQuery) ||
+                productTags.includes(normalizedQuery) ||
+                productCategory.includes(normalizedQuery)
             );
         });
 
@@ -64,7 +64,8 @@ const ProductGallery = () => {
                         className="product-gallery__card"
                         key={product.id}
                         product={product}
-                        isLoading={isLoading}/>
+                        isLoading={isLoading}
+                        removeProduct={removeProduct}/>
                 ))}
 
             </div>

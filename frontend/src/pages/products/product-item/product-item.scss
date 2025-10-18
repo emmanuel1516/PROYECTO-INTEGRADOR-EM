@@ -103,4 +103,44 @@
         color: var.$color-danger-500;
         font-weight: var.$font-weight-bold;
     }
+
+    &__icons{
+        position: relative;
+    }
+
+    &__highlighted {
+        position: absolute;
+        top: 6px;
+        left: 6px;
+        z-index: 1000;
+
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+
+        width: 24px;
+        height: 24px;
+    }
+
+    &__garbage {
+        position: absolute;
+        top: 6px;
+        right: 6px;
+        z-index: 1000;
+
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 4px;
+
+        &-icon {
+            border-radius: 5px;
+            padding: 2px;
+
+            &:hover {
+                cursor: pointer;
+                color: var.$color-danger-500;
+            }
+        }
+    }
 }
