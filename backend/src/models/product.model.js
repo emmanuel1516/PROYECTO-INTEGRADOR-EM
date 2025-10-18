@@ -35,6 +35,10 @@ const productSchema = new Schema({
         type: Boolean,
         default: false,
     },
+    slider: {
+        type: Boolean,
+        default: false,
+    },
 }, {
     timestamps: true, // Creará dos campos: createdAt y updatedAt
     versionKey: false, // No creará el campo __v

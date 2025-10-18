@@ -4,6 +4,13 @@ import { deleteImageFile, existsImageFile } from "../utils/imageFileHandler.js";
 import paths from "../utils/paths.js";
 import ErrorService from "./error.service.js";
 
+const toBool = (val) => {
+    if (typeof val === "boolean") return val;
+    if (typeof val === "number") return val === 1;
+    const s = String(val ?? "").toLowerCase();
+    return s === "true" || s === "1" || s === "on";
+};
+
 export default class ProductService {
     #productModel = ProductModel;
 
@@ -13,6 +20,7 @@ export default class ProductService {
         }
 
         const product = await this.#productModel.findById(id);
+        console.log(product);
 
         if (!product) {
             throw new ErrorService("ID no encontrado", ErrorService.errorCode.NOT_FOUND);
@@ -26,6 +34,7 @@ export default class ProductService {
 
         if (filters.name) queryFilters.name = { $regex: filters.name, $options: "i" };
         if (filters.highlighted) queryFilters.highlighted = filters.highlighted;
+        if (filters.slider) queryFilters.slider = filters.slider;
 
         return await this.#productModel.find(queryFilters);
     }
@@ -41,7 +50,8 @@ export default class ProductService {
             price: Number(values.price),
             stock: Number(values.stock),
             thumbnail: file ? file.filename : "default.jpg",
-            highlighted: values.highlighted,
+            highlighted: toBool(values.highlighted),
+            slider: toBool(values.slider),
         });
 
         return await product.save();
@@ -54,11 +64,22 @@ export default class ProductService {
         if (values.description) product.description = values.description;
         if (values.price) product.price = values.price;
         if (values.stock) product.stock = values.stock;
-        if (values.highlighted) product.highlighted = values.highlighted;
+        if ("highlighted" in values) {
+            product.highlighted = toBool(values.highlighted);
+        }
+        if ("slider" in values) {
+            const next = toBool(values.slider);
+            product.slider = next;
+        }
 
-        if (file && file.filename !== product.thumbnail) {
+        console.log("Hola 1", file && (file.filename !== product.thumbnail));
+        console.log(file);
+        if (file && (file.filename !== product.thumbnail)) {
+            console.log("Entró 1", product.thumbnail && product.thumbnail !== "default.jpg"
+                && await existsImageFile(paths.imageProducts, product.thumbnail));
             if (product.thumbnail && product.thumbnail !== "default.jpg"
                 && await existsImageFile(paths.imageProducts, product.thumbnail)) {
+                console.log("Entró 2");
                 await deleteImageFile(paths.imageProducts, product.thumbnail);
             }
             product.thumbnail = file.filename;

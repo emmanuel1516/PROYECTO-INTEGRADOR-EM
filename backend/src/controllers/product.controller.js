@@ -55,6 +55,7 @@ export default class ProductController {
         try {
             const { id } = req.params;
             const values = validateUpdateProduct(req.body);
+            console.log("Desde UPDATE Controller - ", req.file);
             const product = await this.#productService.update(id, values, req.file);
 
             res.status(200).json({ status: "success", payload: product });

@@ -50,6 +50,13 @@ const createProductSchema = Joi.object({
             "boolean.base": "La definición de producto destacado debe ser un booleano",
             "any.required": "La definición de producto destacado es obligatoria",
         }),
+    slider: Joi
+        .boolean()
+        .default(false)
+        .messages({
+            "boolean.base": "La definición de producto en slider debe ser un booleano",
+            "any.required": "La definición de producto en slider es obligatoria",
+        }),
 }).unknown(false).messages({
     "object.unknown": "No se permiten campos adicionales",
 });
@@ -92,6 +99,11 @@ const updateProductSchema = Joi.object({
         .messages({
             "boolean.base": "La definición de producto destacado debe ser un booleano",
         }),
+    slider: Joi
+        .boolean()
+        .messages({
+            "boolean.base": "La definición de producto en slider debe ser un booleano",
+        }),
 }).unknown(false).messages({
     "object.unknown": "No se permiten campos adicionales",
 });
@@ -111,6 +123,11 @@ const filtersProductSchema = Joi.object({
         .boolean()
         .messages({
             "boolean.base": "La definición de producto destacado debe ser un booleano",
+        }),
+    slider: Joi
+        .boolean()
+        .messages({
+            "boolean.base": "La definición de producto en slider debe ser un booleano",
         }),
 }).unknown(false).messages({
     "object.unknown": "No se permiten campos adicionales",
