@@ -5,6 +5,7 @@ import Layout from "./components/layout/Layout";
 import AppProvider from "./contexts/AppProvider";
 import "./index.scss";
 import PageRoutes from "./pages/PageRoutes";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 createRoot(document.getElementById("root")).render(
     <StrictMode>

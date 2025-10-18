@@ -16,9 +16,9 @@ export const useProduct = () => {
         } catch (error) {
             setProducts([]);
             setError(error.message || "Error al cargar productos.");
+        } finally {
+            setIsLoading(false);
         }
-
-        setIsLoading(false);
     };
 
     const fetchProductById = async (id) => {
@@ -30,9 +30,10 @@ export const useProduct = () => {
             product = await productsApi.fetchProductById(id);
         } catch (error) {
             setError(error.message || "Error al carga producto.");
+        } finally {
+            setIsLoading(false);
         }
 
-        setIsLoading(false);
         return product;
     };
 
@@ -46,9 +47,10 @@ export const useProduct = () => {
             fetchProducts();
         } catch (error) {
             setError(error.message || "Error al crear producto.");
+        } finally {
+            setIsLoading(false);
         }
 
-        setIsLoading(false);
         return product;
     };
 
@@ -62,9 +64,10 @@ export const useProduct = () => {
             fetchProducts();
         } catch (error) {
             setError(error.message || "Error al modificar producto.");
+        }finally {
+            setIsLoading(false);
         }
 
-        setIsLoading(false);
         return product;
     };
 
@@ -77,9 +80,9 @@ export const useProduct = () => {
             fetchProducts();
         } catch (error) {
             setError(error.message || "Error al eliminar producto.");
+        } finally {
+            setIsLoading(false);
         }
-
-        setIsLoading(false);
     };
 
     const checkProductStock = async (id) => {
@@ -91,9 +94,10 @@ export const useProduct = () => {
             result = await productsApi.checkProductStock(id);
         } catch (error) {
             setError(error.message || "Error al chequear stock de producto.");
+        } finally {
+            setIsLoading(false);
         }
 
-        setIsLoading(false);
         return result;
     };
 

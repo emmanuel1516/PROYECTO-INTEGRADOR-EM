@@ -41,7 +41,7 @@ const InputImage = (props) => {
 
         if (file) {
             formik.setFieldValue("image", file);
-            formik.setFieldValue("thumbnail", file.name);
+            formik.setFieldValue("thumbnail", formik.values.thumbnail || file.name);
         }
     };
 

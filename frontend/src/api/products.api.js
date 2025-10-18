@@ -39,11 +39,10 @@ const createProduct = async (values) => {
         formData.append("description", values.description);
         formData.append("price", values.price);
         formData.append("stock", values.stock);
-        formData.append("highlighted", values.highlighted || false);
+        formData.append("highlighted", values.highlighted ? "true" : "false");
+        formData.append("slider", values.slider ? "true" : "false");
 
-        if (values.image instanceof File) {
-            formData.append("image", values.image);
-        }
+        if (values.image instanceof File) formData.append("image", values.image);
 
         const options = {
             method: "POST",
@@ -67,7 +66,8 @@ const updateProduct = async (id, values) => {
         if (values.description !== undefined) formData.append("description", values.description);
         if (values.price) formData.append("price", values.price);
         if (values.stock !== undefined) formData.append("stock", values.stock);
-        if (values.highlighted !== undefined) formData.append("highlighted", values.highlighted);
+        if (values.highlighted !== undefined) formData.append("highlighted", values.highlighted ? "true" : "false");
+        if (values.slider !== undefined) formData.append("slider", values.slider ? "true" : "false");
 
         if (values.image instanceof File) {
             formData.append("image", values.image);

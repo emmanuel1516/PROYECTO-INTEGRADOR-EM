@@ -2,6 +2,9 @@
 
 
 .products-table {
+    display: flex;
+    flex-direction: column;
+
     width: 90%;
 
     &__head {
@@ -16,11 +19,19 @@
         &:hover {
             background-color: var.$color-neutro-300;
         }
+        tr {
+            width: 100%;
+            display: flex;
+        }
 
         td {
             color: var.$color-neutro-800;
             font-weight: var.$font-weight-regular;
             font-size: var.$font-size-sm;
+        }
+
+        &-img {
+            max-width: 50px;
         }
     }
 
@@ -38,8 +49,11 @@
     }
 
     &__body-actions {
-        display: flex;
+        display: inline-flex;
+        justify-content: flex-end;
+        align-items: center;
         gap: 1rem;
+        width: 100%;
     }
 
 }

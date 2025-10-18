@@ -1,9 +1,10 @@
 import AlertSuccessForm from "@/components/alerts/AlertSuccessForm";
 import { ButtonDanger, ButtonPrimary } from "@/components/buttons";
-import { InputDescription, InputImage, InputName, InputPrice, InputStock } from "@/components/inputs";
+import { InputDescription, InputImage, InputName, InputPrice, InputSlider, InputStock } from "@/components/inputs";
 import PropTypes from "prop-types";
 import "./product-form.scss";
 import useProductForm from "./useProductForm.js";
+import InputHighlighted from "@/components/inputs/InputHighlighted";
 
 const ProductForm = (props) => {
     const { idProduct, className, ...restProps } = props;
@@ -18,6 +19,8 @@ const ProductForm = (props) => {
             <InputPrice formik={formik} />
             <InputStock formik={formik} />
             <InputImage formik={formik} isProduct={true} />
+            <InputHighlighted formik={formik}/>
+            <InputSlider formik={formik}/>
 
             <div className="product-form__actions">
                 <ButtonPrimary type="submit" disabled={isSubmitDisabled()}>Aceptar</ButtonPrimary>

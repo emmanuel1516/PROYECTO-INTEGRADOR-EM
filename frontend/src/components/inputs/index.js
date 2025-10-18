@@ -9,3 +9,5 @@ export { default as InputPrice } from "./InputPrice";
 export { default as InputSearch } from "./InputSearch";
 export { default as InputStock } from "./InputStock";
 export { default as InputSurname } from "./InputSurname";
+export { default as InputHighlighted } from "./InputHighlighted";
+export { default as InputSlider } from "./InputSlider";

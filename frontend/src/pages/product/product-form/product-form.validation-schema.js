@@ -2,7 +2,7 @@ import * as Yup from "yup";
 
 const NAME_MAX_LENGTH = 35;
 const DESCRIPTION_MAX_LENGTH = 100;
-const THUMBNAIL_MAX_LENGTH = 25;
+const THUMBNAIL_MAX_LENGTH = 255;
 
 export const validationSchema = Yup.object({
     name: Yup
@@ -27,4 +27,12 @@ export const validationSchema = Yup.object({
         .max(THUMBNAIL_MAX_LENGTH, `La imagen no puede tener más de ${THUMBNAIL_MAX_LENGTH} caracteres`)
         .required("La imagen es obligatoria")
         .typeError("La imagen debe ser de tipo string"),
+    highlighted: Yup
+        .boolean()
+        .required("El valor de 'Destacado' es obligatorio")
+        .typeError("El valor de 'Destacado' debe ser booleano"),
+    slider: Yup
+        .boolean()
+        .required("El valor de 'Slider' es obligatorio")
+        .typeError("El valor de 'Slider' debe ser booleano"),
 });

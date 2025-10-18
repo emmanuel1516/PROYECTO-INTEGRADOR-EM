@@ -2,6 +2,7 @@ import { Skeleton } from "@/components/skeleton";
 import { API_URL_IMAGES } from "@/constants/api.constant";
 import { Card as MuiCard } from "@mui/material";
 import PropTypes from "prop-types";
+
 import "./products-slider-item.scss";
 
 const ProductsSliderItem = (props) => {
@@ -30,7 +31,7 @@ const ProductsSliderItem = (props) => {
 
 ProductsSliderItem.propTypes = {
     product: PropTypes.shape({
-        id: PropTypes.number.isRequired,
+        id: PropTypes.string.isRequired,
         name: PropTypes.string.isRequired,
         description: PropTypes.string.isRequired,
         price: PropTypes.number.isRequired,

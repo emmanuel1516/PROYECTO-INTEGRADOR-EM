@@ -16,7 +16,7 @@ export const useShoppingCart = () => {
         };
     };
 
-    const createArticleSchema = (id, name, quantity, stock, price) => {
+    const createArticleSchema = (id, name, quantity, stock, price, thumbnail) => {
         if (quantity > stock) {
             quantity = stock;
         }
@@ -27,6 +27,7 @@ export const useShoppingCart = () => {
             quantity,
             price,
             amount: quantity * price,
+            thumbnail,
         };
     };
 
@@ -50,9 +51,9 @@ export const useShoppingCart = () => {
         if (index >= 0) {
             const article = articles[index];
             quantity = article.quantity + quantity;
-            articles[index] = createArticleSchema(product.id, product.name, quantity, product.stock, product.price);
+            articles[index] = createArticleSchema(product.id, product.name, quantity, product.stock, product.price, product.thumbnail);
         } else {
-            articles.push(createArticleSchema(product.id, product.name, quantity, product.stock, product.price));
+            articles.push(createArticleSchema(product.id, product.name, quantity, product.stock, product.price, product.thumbnail));
         }
 
         const data = createShoppingCartSchema(articles);
@@ -69,7 +70,7 @@ export const useShoppingCart = () => {
         if (index >= 0) {
             const article = articles[index];
             quantity = article.quantity - quantity;
-            articles[index] = createArticleSchema(product.id, product.name, quantity, product.stock, product.price);
+            articles[index] = createArticleSchema(product.id, product.name, quantity, product.stock, product.price, product.thumbnail);
 
             if (quantity <= 0) {
                 articles.splice(index, 1);

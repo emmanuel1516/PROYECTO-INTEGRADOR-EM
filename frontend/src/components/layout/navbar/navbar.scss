@@ -2,13 +2,16 @@
 
 .navbar {
     grid-area: navbar;
+    justify-content: center !important;
     padding: var.$spacing-sm 0 0 var.$spacing-sm !important;
+    margin: 0;
     background-color: var.$color-primary-500;
 
     &__menu-list {
+        margin: 0 !important;
         display: flex !important;
         align-items: center !important;
-        justify-content: center !important;
+        justify-content: center;
     }
 
 
@@ -40,6 +43,8 @@
 
 
     @media (max-width: 768px) {
+
+        justify-content: left !important;
 
         &__menu-icon,
         &__menu-drawer {

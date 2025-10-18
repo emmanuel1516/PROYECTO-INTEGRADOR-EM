@@ -5,10 +5,17 @@ import RemoveCircleOutlineIcon from "@mui/icons-material/RemoveCircleOutline";
 import { Table, TableBody, TableCell, TableHead, TableRow } from "@mui/material";
 import PropTypes from "prop-types";
 import "./products-table.scss";
+import { API_URL_IMAGES } from "@/constants/api.constant";
 
 const ProductsTable = (props) => {
     const { className, articles, totalAmount, addArticle, subtractArticle, ...restProps } = props;
     const classes = `products-table ${className}`;
+
+    const getSourceImage = (product) => {
+        return product.thumbnail === "default.jpg"
+            ? `${API_URL_IMAGES}/${product.thumbnail}`
+            : `${API_URL_IMAGES}/products/${product.thumbnail}`;
+    };
 
     const renderActions = (article) => {
         return (
@@ -42,6 +49,7 @@ const ProductsTable = (props) => {
             <Table>
                 <TableHead>
                     <TableRow className="products-table__head">
+                        <TableCell/>
                         <TableCell align="left">Producto</TableCell>
                         <TableCell align="right">Cant.</TableCell>
                         <TableCell align="right">Precio</TableCell>
@@ -52,11 +60,17 @@ const ProductsTable = (props) => {
                 <TableBody>
                     {articles?.map((article) => (
                         <TableRow key={article.id} className="products-table__body">
+                            <TableCell>
+                                <img
+                                    className="products-table__body-img"
+                                    src={getSourceImage(article)}
+                                    alt="Imagen del producto"/>
+                            </TableCell>
                             <TableCell align="left">{article.name}</TableCell>
                             <TableCell align="right">{article.quantity}</TableCell>
                             <TableCell align="right">${formatPrice(article.price?.toFixed(2))}</TableCell>
                             <TableCell align="right">${formatPrice(article.amount?.toFixed(2))}</TableCell>
-                            <TableCell className="products-table__body-actions" align="right">{renderActions(article)}</TableCell>
+                            <TableCell align="right"><div className="products-table__body-actions">{renderActions(article)}</div></TableCell>
                         </TableRow>
                     ))}
                 </TableBody>

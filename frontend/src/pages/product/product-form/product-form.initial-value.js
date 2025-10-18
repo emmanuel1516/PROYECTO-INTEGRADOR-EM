@@ -4,4 +4,6 @@ export const initialValues = {
     price: 0,
     stock: 0,
     thumbnail: "default.jpg",
+    highlighted: false,
+    slider: false,
 };

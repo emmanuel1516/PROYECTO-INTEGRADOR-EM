@@ -44,14 +44,20 @@ const useProductForm = (idProduct) => {
 
     const loadProduct = async (idProduct) => {
         const product = await fetchProductById(idProduct);
-        formik.setValues(product);
+
+        formik.setValues({
+            ...initialValues,
+            ...product,
+            highlighted: product.highlighted === true || product.highlighted === "true",
+            slider: product.slider === true || product.slider === "true",
+        });
     };
 
     useEffect(() => {
         if (idProduct) {
             loadProduct(idProduct);
         }
-    }, [idProduct] );
+    }, [idProduct]);
 
     return {
         formik,
