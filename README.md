@@ -147,6 +147,6 @@ Cada estudiante presenta su propia versión personalizada, partiendo del reposit
 ## 🙏 Agradecimiento especial
 
 Quiero expresar mi más sincero agradecimiento al **Profe Sergio**,
-por su cariño, compromiso, paciencia y su enorme dedicación durante todo el proceso formativo.
+por su cariño, compromiso, paciencia y enorme dedicación durante todo el proceso formativo.
 Su manera de enseñar es clara transmitiendo esa pasión por la programación, eso fue clave para comprender cada etapa del desarrollo. Además nos ayudo a tener la motivación para poder terminar el curso.
 Gracias por compartir su conocimiento y motivarme a seguir creciendo como desarrollador profesional. Nos vemos pronto.
