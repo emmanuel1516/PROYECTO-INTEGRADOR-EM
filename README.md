@@ -38,7 +38,7 @@ El objetivo principal es aplicar buenas prácticas de desarrollo backend, arquit
 ## 🧱 Estructura del proyecto
 
 El backend está organizado por capas para mantener un código **modular, mantenible y escalable**:
-
+`
 src/
 ├── config/ → configuración general (CORS, DB, etc.)
 ├── models/ → esquemas de Mongoose
@@ -48,7 +48,7 @@ src/
 ├── validators/ → validaciones de entrada con Joi
 ├── utils/ → utilidades generales (mailer, uploader, etc.)
 └── app.js → punto de entrada del servidor
-
+`
 ## 📦 Requerimientos funcionales
 
 ### 🛍️ Gestión de productos
