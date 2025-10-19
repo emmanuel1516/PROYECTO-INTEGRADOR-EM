@@ -1,10 +1,14 @@
 const getApiUrl = () => {
+
+    if (import.meta.env.VITE_API_URL) {
+        return import.meta.env.VITE_API_URL;
+    }
+
     if (import.meta.env.DEV) {
-        // En desarrollo, se usa localhost
+
         return "http://localhost:3000/api";
     }
 
-    // En Vercel, se usa la ruta relativa porque el backend está en el mismo dominio
     return "/api";
 };
 
