@@ -1,6 +1,6 @@
 import * as Yup from "yup";
 
-const NAME_MAX_LENGTH = 35;
+const NAME_MAX_LENGTH = 75;
 const DESCRIPTION_MAX_LENGTH = 100;
 const THUMBNAIL_MAX_LENGTH = 255;
 

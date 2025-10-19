@@ -3,3 +3,23 @@
 .products-slider {
   box-shadow: 1px 1px 15px rgba(0, 0, 0, 0.2);
 }
+
+.products-slider .carousel .carousel-item > .d-block.w-100 {
+  z-index: 1;
+}
+
+.carousel-control-prev span,
+.carousel-control-next span {
+  z-index: 5;
+  background-color: rgba(0, 0, 0, 0.5);
+
+  border-radius: 45%;
+  padding: var.$spacing-lg;
+  font-size: var.$font-size-xxl;
+  color: var.$color-neutro-000;
+
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.7);
+  }
+
+}

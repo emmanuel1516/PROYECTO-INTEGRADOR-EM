@@ -33,11 +33,11 @@ const InputImage = (props) => {
             return;
         }
 
-        const thumb = formik.values.thumbnail || "default.jpg";
-        const isDefault = thumb === "default.jpg";
+        const thumbnail = formik.values.thumbnail || "default.jpg";
+        const isDefault = thumbnail === "default.jpg";
         const src = isDefault
             ? `${API_URL_IMAGES}/default.jpg`
-            : `${API_URL_IMAGES}/products/${thumb}`;
+            : `${thumbnail}`;
 
         setInputConfig((prev) => ({
             ...prev,
@@ -77,6 +77,7 @@ const InputImage = (props) => {
             </div>
 
             <input
+                className="input__image-field"
                 type="file"
                 accept="image/*"
                 id="image"

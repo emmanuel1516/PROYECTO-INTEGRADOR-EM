@@ -19,8 +19,10 @@ const ProductForm = (props) => {
             <InputPrice formik={formik} />
             <InputStock formik={formik} />
             <InputImage formik={formik} isProduct={true} />
-            <InputHighlighted formik={formik}/>
-            <InputSlider formik={formik}/>
+            <div className="product-form__inputs-checkbox">
+                <InputHighlighted formik={formik}/>
+                <InputSlider formik={formik}/>
+            </div>
 
             <div className="product-form__actions">
                 <ButtonPrimary type="submit" disabled={isSubmitDisabled()}>Aceptar</ButtonPrimary>

@@ -19,12 +19,12 @@ const Header = () => {
 
     return (
         <header className="header">
-            <InstitutionLogo className="header__institution"/>
+            <InstitutionLogo className="header__institution" />
             <IconButtonBadge
                 onClick={handleShoppingCart}
                 className="header__shopping-cart"
                 badgeContent={shoppingCart.totalQuantity ?? 0}>
-                <ShoppingCartIcon/>
+                <ShoppingCartIcon />
             </IconButtonBadge>
 
         </header>

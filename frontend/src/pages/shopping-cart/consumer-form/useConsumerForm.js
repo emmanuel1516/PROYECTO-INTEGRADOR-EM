@@ -1,4 +1,3 @@
-
 import { useFormik } from "formik";
 import { useState } from "react";
 import { initialValues } from "./consumer-form.initial-value.js";
@@ -31,7 +30,9 @@ const useConsumerForm = ({ onBuy }) => {
     return {
         formik,
         isSubmitDisabled,
+        isSubmitting: formik.isSubmitting,
         submitError,
+        reset: formik.resetForm,
     };
 };
 

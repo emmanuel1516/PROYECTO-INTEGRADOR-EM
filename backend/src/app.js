@@ -12,6 +12,7 @@ import { config as configStatic } from "./config/static.config.js";
 import inquiryRouter from "./routes/inquiry.router.js";
 import institutionRouter from "./routes/institution.router.js";
 import productRouter from "./routes/product.router.js";
+import orderRouter from "./routes/order.router.js";
 
 const app = express();
 configCors(app);
@@ -26,6 +27,7 @@ const HOST = process.env.HOST;
 app.use("/api/institutions", institutionRouter);
 app.use("/api/products", productRouter);
 app.use("/api/inquiry", inquiryRouter);
+app.use("/api/orders", orderRouter);
 
 // Control de rutas inexistentes
 app.use((req, res) => {

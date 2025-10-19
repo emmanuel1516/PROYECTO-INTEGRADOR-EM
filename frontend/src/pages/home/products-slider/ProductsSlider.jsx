@@ -15,7 +15,7 @@ const ProductsSlider = () => {
         <>
             <div className="products-slider">
                 <div className="products-slider__slides">
-                    <Carousel>
+                    <Carousel data-bs-theme="dark">
                         {slides.map((product) => (
                             <Carousel.Item key={product.id}>
                                 <ProductsSliderItem

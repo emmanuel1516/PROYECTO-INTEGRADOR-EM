@@ -1,6 +1,5 @@
 import { Skeleton } from "@/components/skeleton";
 import { Text } from "@/components/texts";
-import { API_URL_IMAGES } from "@/constants/api.constant";
 import { Card as MuiCard } from "@mui/material";
 import PropTypes from "prop-types";
 import "./highlighted-product-card.scss";
@@ -20,7 +19,7 @@ const HighlightedProductCard = (props) => {
             <Skeleton className="highlighted-product-card__image--skeleton" isLoading={isLoading}>
                 <img
                     className="highlighted-product-card__image"
-                    src={`${API_URL_IMAGES}/products/${product.thumbnail}`}
+                    src={`${product.thumbnail}`}
                     alt="Imagen del producto"/>
 
             </Skeleton>

@@ -1,7 +1,7 @@
 import Joi from "joi";
 import { validateSchema } from "./validator.js";
 
-const NAME_MAX_LENGTH = 25;
+const NAME_MAX_LENGTH = 75;
 const DESCRIPTION_MAX_LENGTH = 100;
 
 const createProductSchema = Joi.object({

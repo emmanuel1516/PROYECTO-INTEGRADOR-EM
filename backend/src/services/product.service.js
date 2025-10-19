@@ -1,8 +1,8 @@
 import { isValidId } from "../config/mongoose.config.js";
 import ProductModel from "../models/product.model.js";
-import { deleteImageFile, existsImageFile } from "../utils/imageFileHandler.js";
-import paths from "../utils/paths.js";
 import ErrorService from "./error.service.js";
+import cloudinary from "../config/cloudinary.config.js";
+import { uploadToCloudinary } from "../utils/uploader.js";
 
 const toBool = (val) => {
     if (typeof val === "boolean") return val;
@@ -18,82 +18,82 @@ export default class ProductService {
         if (!isValidId(id)) {
             throw new ErrorService("ID inválido", ErrorService.errorCode.BAD_REQUEST);
         }
-
         const product = await this.#productModel.findById(id);
-        console.log(product);
-
         if (!product) {
             throw new ErrorService("ID no encontrado", ErrorService.errorCode.NOT_FOUND);
         }
-
         return product;
     }
 
     async findAll(filters = {}) {
-        const queryFilters = {};
-
-        if (filters.name) queryFilters.name = { $regex: filters.name, $options: "i" };
-        if (filters.highlighted) queryFilters.highlighted = filters.highlighted;
-        if (filters.slider) queryFilters.slider = filters.slider;
-
-        return await this.#productModel.find(queryFilters);
+        const q = {};
+        if (filters.name) q.name = { $regex: filters.name, $options: "i" };
+        if (filters.highlighted !== undefined) q.highlighted = filters.highlighted;
+        if (filters.slider !== undefined) q.slider = filters.slider;
+        return this.#productModel.find(q);
     }
 
     async findById(id) {
-        return await this.#getById(id);
+        return this.#getById(id);
     }
 
     async create(values, file) {
-        const product = new ProductModel({
+        let thumbnail = "default.jpg";
+        let public_id = null;
+
+        if (file) {
+            try {
+                const result = await uploadToCloudinary(file); // <- named import
+                console.log("CLOUDINARY OK:", result.secure_url, result.public_id);
+                thumbnail = result.secure_url;
+                public_id = result.public_id;
+            } catch (e) {
+                console.error("Cloudinary upload error:", e?.message, e?.http_code, e?.name);
+                throw e; // deja que lo capture el controller y devuelva 500 con mensaje útil
+            }
+        }
+
+        const product = new this.#productModel({
             name: values.name,
             description: values.description,
             price: Number(values.price),
             stock: Number(values.stock),
-            thumbnail: file ? file.filename : "default.jpg",
+            thumbnail,
+            public_id,
             highlighted: toBool(values.highlighted),
             slider: toBool(values.slider),
         });
 
-        return await product.save();
+        return product.save();
     }
 
     async update(id, values, file) {
         const product = await this.#getById(id);
 
         if (values.name) product.name = values.name;
-        if (values.description) product.description = values.description;
-        if (values.price) product.price = values.price;
-        if (values.stock) product.stock = values.stock;
-        if ("highlighted" in values) {
-            product.highlighted = toBool(values.highlighted);
-        }
-        if ("slider" in values) {
-            const next = toBool(values.slider);
-            product.slider = next;
-        }
+        if (values.description !== undefined) product.description = values.description;
+        if (values.price !== undefined) product.price = Number(values.price);
+        if (values.stock !== undefined) product.stock = Number(values.stock);
+        if ("highlighted" in values) product.highlighted = toBool(values.highlighted);
+        if ("slider" in values) product.slider = toBool(values.slider);
 
-        console.log("Hola 1", file && (file.filename !== product.thumbnail));
-        console.log(file);
-        if (file && (file.filename !== product.thumbnail)) {
-            console.log("Entró 1", product.thumbnail && product.thumbnail !== "default.jpg"
-                && await existsImageFile(paths.imageProducts, product.thumbnail));
-            if (product.thumbnail && product.thumbnail !== "default.jpg"
-                && await existsImageFile(paths.imageProducts, product.thumbnail)) {
-                console.log("Entró 2");
-                await deleteImageFile(paths.imageProducts, product.thumbnail);
+        if (file) {
+            if (product.public_id) {
+                await cloudinary.uploader.destroy(product.public_id);
             }
-            product.thumbnail = file.filename;
+            const result = await uploadToCloudinary(file);
+            product.thumbnail = result.secure_url;
+            product.public_id = result.public_id;
         }
 
-        return await product.save();
+        return product.save();
     }
 
     async delete(id) {
         const product = await this.#getById(id);
 
-        if (product.thumbnail && product.thumbnail !== "default.jpg"
-            && await existsImageFile(paths.imageProducts, product.thumbnail)) {
-            await deleteImageFile(paths.imageProducts, product.thumbnail);
+        if (product.public_id) {
+            await cloudinary.uploader.destroy(product.public_id);
         }
 
         await this.#productModel.findByIdAndDelete(id);

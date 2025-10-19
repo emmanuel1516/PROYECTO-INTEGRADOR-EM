@@ -108,19 +108,22 @@
         position: relative;
     }
 
-    &__highlighted {
-        position: absolute;
-        top: 6px;
-        left: 6px;
-        z-index: 1000;
+    &__icons-left {
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+    }
 
+    &__highlighted, &__slider {
         display: inline-flex;
         align-items: center;
         justify-content: center;
-
         width: 24px;
         height: 24px;
+        margin-left: 4px;
+        margin-top: 4px;
     }
+
 
     &__garbage {
         position: absolute;

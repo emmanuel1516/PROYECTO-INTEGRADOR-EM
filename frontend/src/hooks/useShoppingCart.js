@@ -94,6 +94,11 @@ export const useShoppingCart = () => {
         setShoppingCart(data);
     };
 
+    const clearCart = () => {
+        setShoppingCart({ articles: [], totalQuantity: 0, totalAmount: 0 });
+        localStorage.removeItem(KEY_SHOPPING_CART);
+    };
+
     useEffect(() => {
         getShoppingCart();
     }, []);
@@ -103,5 +108,6 @@ export const useShoppingCart = () => {
         addArticle,
         subtractArticle,
         removeFromCart,
+        clearCart,
     };
 };

@@ -15,4 +15,11 @@
         display: flex;
         gap: var.$spacing-md;
     }
+
+    &__inputs-checkbox {
+        display: flex;
+        gap: var.$spacing-lg;
+        width: 100%;
+        justify-content: space-between;
+    }
 }

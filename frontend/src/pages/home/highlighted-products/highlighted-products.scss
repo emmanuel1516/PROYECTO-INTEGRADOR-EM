@@ -3,6 +3,7 @@
 .highlighted-products {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
+    max-width: 1922px;
     gap: var.$spacing-md;
     align-items: stretch;
     background-color: var.$color-neutro-300;

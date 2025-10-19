@@ -4,6 +4,11 @@ const NAME_MAX_LENGTH = 25;
 const DESCRIPTION_MAX_LENGTH = 100;
 
 const productSchema = new Schema({
+    public_id: {
+        type: String,
+        default: null,
+        trim: true,
+    },
     name: {
         type: String,
         required: [ true, "El nombre es obligatorio" ],

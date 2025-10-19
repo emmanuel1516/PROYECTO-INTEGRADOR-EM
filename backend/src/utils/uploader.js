@@ -1,21 +1,31 @@
 import multer from "multer";
-import paths from "./paths.js";
-
+import cloudinary from "../config/cloudinary.config.js";
 import { generateNameForFile } from "./random.js";
 
-// Configuración del almacenamiento para multer
-const storage = multer.diskStorage({
-    // Define el destino para almacenar las imágenes de productos subidas
-    destination: (req, file, callback) => {
-        callback(null, paths.imageProducts);
-    },
-    // Define el nombre del archivo subido
-    filename: (req, file, callback) => {
-        const filename = generateNameForFile(file.originalname);
-        callback(null, filename);
-    },
-});
-
+// Usamos almacenamiento en memoria (no en disco)
+const storage = multer.memoryStorage();
 const uploader = multer({ storage });
 
 export default uploader;
+
+// Subida a Cloudinary
+export const uploadToCloudinary = async (file, folder = "products") => {
+    if (!file) throw new Error("No se recibió archivo para subir.");
+    const filename = generateNameForFile(file.originalname);
+
+    return new Promise((resolve, reject) => {
+        const stream = cloudinary.uploader.upload_stream(
+            {
+                folder,
+                id: filename.split(".")[0],
+                resource: "image",
+            },
+            (error, result) => {
+                if (error) reject(error);
+                else resolve(result);
+            },
+        );
+
+        stream.end(file.buffer); // sube desde memoria
+    });
+};

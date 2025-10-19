@@ -5,6 +5,7 @@ import AppContext from "@/contexts/AppContext";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import RemoveCircleOutlineIcon from "@mui/icons-material/RemoveCircleOutline";
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
+import { ViewCarousel } from "@mui/icons-material";
 import StarIcon from "@mui/icons-material/Star";
 import { CardActionArea, IconButton, Card as MuiCard } from "@mui/material";
 import PropTypes from "prop-types";
@@ -56,7 +57,7 @@ const ProductItem = (props) => {
     const getSourceImage = () => {
         return product.thumbnail === "default.jpg"
             ? `${API_URL_IMAGES}/${product.thumbnail}`
-            : `${API_URL_IMAGES}/products/${product.thumbnail}`;
+            : `${product.thumbnail}`;
     };
 
     const formatPrice = (value) => {
@@ -88,12 +89,20 @@ const ProductItem = (props) => {
             <Skeleton className="product-item__image--skeleton" isLoading={isLoading}>
                 <CardActionArea>
                     <div className="product-item__icons">
-                        {product.highlighted && (
-                            <StarIcon
-                                className="product-item__highlighted"
-                                color="warning"
-                                fontSize="small" />
-                        )}
+                        <div className="product-item__icons-left">
+                            {product.highlighted && (
+                                <StarIcon
+                                    className="product-item__highlighted"
+                                    color="warning"
+                                    fontSize="small" />
+                            )}
+                            {product.slider && (
+                                <ViewCarousel
+                                    className="product-item__slider"
+                                    color="action"
+                                    fontSize="small" />
+                            )}
+                        </div>
                         <IconButton
                             component="div"
                             className="product-item__garbage"
@@ -140,6 +149,7 @@ ProductItem.propTypes = {
         stock: PropTypes.number.isRequired,
         thumbnail: PropTypes.string.isRequired,
         highlighted: PropTypes.bool.isRequired,
+        slider: PropTypes.bool.isRequired,
     }),
     isLoading: PropTypes.bool.isRequired,
     className: PropTypes.string,

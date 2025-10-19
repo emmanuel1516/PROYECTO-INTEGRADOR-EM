@@ -14,7 +14,7 @@ const ProductsTable = (props) => {
     const getSourceImage = (product) => {
         return product.thumbnail === "default.jpg"
             ? `${API_URL_IMAGES}/${product.thumbnail}`
-            : `${API_URL_IMAGES}/products/${product.thumbnail}`;
+            : `${product.thumbnail}`;
     };
 
     const renderActions = (article) => {

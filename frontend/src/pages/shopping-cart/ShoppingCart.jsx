@@ -1,4 +1,3 @@
-
 import { Text } from "@/components/texts";
 import AppContext from "@/contexts/AppContext";
 import { useContext } from "react";

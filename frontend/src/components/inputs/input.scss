@@ -27,6 +27,10 @@
             border-radius: 0.25rem;
             object-fit: cover;
         }
+
+        &-field {
+            margin-top: 0.5rem;
+        }
     }
 
     &--valid {

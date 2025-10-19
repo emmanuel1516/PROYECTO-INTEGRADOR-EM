@@ -4,53 +4,83 @@ import AlertSuccessForm from "@/components/alerts/AlertSuccessForm";
 import { ButtonDanger, ButtonPrimary } from "@/components/buttons";
 import { InputEmail, InputName, InputPhone, InputSurname } from "@/components/inputs";
 import { useProduct } from "@/hooks/useProduct";
+import orderApi from "@/api/order.api.js";
 import PropTypes from "prop-types";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import "./consumer-form.scss";
 import useConsumerForm from "./useConsumerForm";
+import AppContext from "@/contexts/AppContext";
 
 const ORDERS_KEY = "order-cart";
 
-const ConsumerForm = ( props ) => {
+const ConsumerForm = (props) => {
     const { className, onCancel, articles, ...restProps } = props;
     const [ alertError, setAlertError ] = useState({ open: false, message: "" });
     const [ alertSuccess, setAlertSuccess ] = useState({ open: false, message: "" });
     const classes = `consumer-form ${className ?? ""}`;
     const { fetchProductById, updateProduct } = useProduct();
 
+    const { shoppingCartContext } = useContext(AppContext);
+    const { clearCart } = shoppingCartContext;
+
     const handleCancel = () => {
         formik.resetForm();
         onCancel?.();
     };
 
-    const handleBuy = async () => {
-        const items = articles ?? [];
-
-        if (items.length === 0) {
-            setAlertError({
-                open: true,
-                message: "No hay productos en el carrito.",
-            });
-            return false;
-        }
-
+    const validarStock = async (items) => {
         const products = await Promise.all(items.map((i) => fetchProductById(i.id)));
-
         const insuficientes = [];
+
         for (let i = 0; i < items.length; i++) {
             const cartItem = items[i];
             const prod = products[i];
             const stockActual = prod?.stock ?? 0;
-
             if (!prod || cartItem.quantity > stockActual) {
                 insuficientes.push({ id: cartItem.id, name: cartItem.name });
             }
         }
 
+        return { products, insuficientes };
+    };
+
+    const guardarOrdenLocal = (items, totalQuantity, totalAmount) => {
+        const order = {
+            id: Date.now(),
+            items,
+            totalQuantity,
+            totalAmount,
+            createdAt: new Date().toISOString(),
+        };
+        const prev = JSON.parse(localStorage.getItem(ORDERS_KEY) || "[]");
+        localStorage.setItem(ORDERS_KEY, JSON.stringify([ order, ...prev ]));
+    };
+
+    const enviarCorreo = async (consumer, items, totalQuantity, totalAmount) => {
+        try {
+            await orderApi.sendOrder({ consumer, items, totalQuantity, totalAmount });
+        } catch {
+            setAlertError({
+                open: true,
+                message: "La compra se registró, pero no se pudo enviar el email.",
+            });
+        }
+    };
+
+    const handleBuy = async (consumer) => {
+        const items = articles ?? [];
+
+        if (items.length === 0) {
+            setAlertError({ open: true, message: "No hay productos en el carrito." });
+            return false;
+        }
+
+        const { products, insuficientes } = await validarStock(items);
+
         if (insuficientes.length > 0) {
             setAlertError({
                 open: true,
-                message: "Hay productos con stock insuficiente",
+                message: "Hay productos con stock insuficiente.",
             });
             return false;
         }
@@ -69,25 +99,18 @@ const ConsumerForm = ( props ) => {
             0,
         );
 
-        const order = {
-            id: Date.now(),
-            items,
-            totalQuantity,
-            totalAmount,
-            createdAt: new Date().toISOString(),
-        };
-
-        const prev = JSON.parse(localStorage.getItem(ORDERS_KEY) || "[]");
-        localStorage.setItem(ORDERS_KEY, JSON.stringify([ order, ...prev ]));
+        guardarOrdenLocal(items, totalQuantity, totalAmount);
+        await enviarCorreo(consumer, items, totalQuantity, totalAmount);
 
         setAlertSuccess({
             open: true,
             message: "¡Compra realizada con éxito!",
         });
 
+        clearCart();
+        formik.resetForm();
         onCancel();
         return true;
-
     };
 
     const { formik, isSubmitDisabled } = useConsumerForm({ onBuy: handleBuy });
@@ -110,6 +133,7 @@ const ConsumerForm = ( props ) => {
                     </ButtonPrimary>
                 </div>
             </form>
+
             {alertError.open && (
                 <AlertDanger
                     open={alertError.open}
@@ -135,6 +159,7 @@ ConsumerForm.propTypes = {
             quantity: PropTypes.number.isRequired,
             price: PropTypes.number.isRequired,
             amount: PropTypes.number.isRequired,
+            thumbnail: PropTypes.string,
         }),
     ).isRequired,
     onCancel: PropTypes.func.isRequired,

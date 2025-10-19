@@ -1,7 +1,5 @@
 import ErrorService from "../services/error.service.js";
 import ProductService from "../services/product.service.js";
-import { deleteImageFile } from "../utils/imageFileHandler.js";
-import paths from "../utils/paths.js";
 import { validateCreateProduct, validateProductFilters, validateUpdateProduct } from "../validators/product.validator.js";
 
 export default class ProductController {
@@ -34,20 +32,17 @@ export default class ProductController {
             res.status(handledError.code).json({ status: "error", message: handledError.message });
         }
     }
-
     async create(req, res) {
         try {
+            console.log("BODY:", req.body);
+            console.log("FILE:", !!req.file, req.file?.mimetype, req.file?.originalname, req.file?.size);
             const values = validateCreateProduct(req.body);
             const product = await this.#productService.create(values, req.file);
-
             res.status(201).json({ status: "success", payload: product });
         } catch (error) {
-            if (req.file?.filename) {
-                await deleteImageFile(paths.imageProducts, req.file.filename);
-            }
-
-            const handledError = ErrorService.handleError(error);
-            res.status(handledError.code).json({ status: "error", message: handledError.message });
+            console.error("CREATE /products error:", error?.message, error?.http_code, error?.name);
+            const handled = ErrorService.handleError(error);
+            res.status(handled.code).json({ status: "error", message: handled.message });
         }
     }
 
@@ -55,17 +50,11 @@ export default class ProductController {
         try {
             const { id } = req.params;
             const values = validateUpdateProduct(req.body);
-            console.log("Desde UPDATE Controller - ", req.file);
             const product = await this.#productService.update(id, values, req.file);
-
             res.status(200).json({ status: "success", payload: product });
         } catch (error) {
-            if (req.file?.filename) {
-                await deleteImageFile(paths.imageProducts, req.file.filename);
-            }
-
-            const handledError = ErrorService.handleError(error);
-            res.status(handledError.code).json({ status: "error", message: handledError.message });
+            const handled = ErrorService.handleError(error);
+            res.status(handled.code).json({ status: "error", message: handled.message });
         }
     }
 
@@ -73,11 +62,10 @@ export default class ProductController {
         try {
             const { id } = req.params;
             await this.#productService.delete(id);
-
             res.status(200).json({ status: "success" });
         } catch (error) {
-            const handledError = ErrorService.handleError(error);
-            res.status(handledError.code).json({ status: "error", message: handledError.message });
+            const handled = ErrorService.handleError(error);
+            res.status(handled.code).json({ status: "error", message: handled.message });
         }
     }
 }
