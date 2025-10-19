@@ -37,8 +37,9 @@ El objetivo principal es aplicar buenas prácticas de desarrollo backend, arquit
 
 ## 🧱 Estructura del proyecto
 
-El backend está organizado por capas para mantener un código **modular, mantenible y escalable**:
--src/
+- El backend está organizado por capas para mantener un código **modular, mantenible y escalable**:
+
+- src/
     - **config/** → configuración general (CORS, DB, etc.)  
     - **models/** → esquemas de Mongoose  
     - **routes/** → definición de rutas API  
